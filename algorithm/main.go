@@ -1,26 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type Person struct {
-	age int
+type Math struct {
+	x, y int
+}
+
+var m = map[string]Math{
+	"foo": Math{2, 3},
 }
 
 func main() {
-	fmt.Println("hello world!")
-
-	p := &Person{29}
-
-	defer fmt.Println(p.age)
-	
-	defer func(p *Person) {
-		fmt.Println(p.age)
-	}(p)
-
-	defer func() {
-		fmt.Println(p.age)
-	}()
-
-	p = &Person{30}
+	v := []int{1,2,3}
+	for i,value  := range v{
+		fmt.Println((i))
+		v = append(v, value)
+	} 
+	fmt.Println(v)
 
 }
