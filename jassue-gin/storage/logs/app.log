@@ -1,1 +1,12 @@
 [2023-06-07 00:27:46.680]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 22:22:16.483]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 22:52:10.555]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 22:52:12.606]	local.error	bootstrap/db.go:50	mysql connect failed, err:	{"err": "dial tcp 127.0.0.1:8306: connectex: No connection could be made because the target machine actively refused it."}
+[2023-06-07 23:02:48.642]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 23:02:50.664]	local.error	bootstrap/db.go:50	mysql connect failed, err:	{"err": "dial tcp 127.0.0.1:8306: connectex: No connection could be made because the target machine actively refused it."}
+[2023-06-07 23:03:38.232]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 23:04:44.771]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 23:07:35.939]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 23:11:41.109]	local.info	jassue-gin/main.go:17	log init success!
+[2023-06-07 23:11:43.135]	local.error	bootstrap/db.go:50	mysql connect failed, err:	{"err": "dial tcp 127.0.0.1:6306: connectex: No connection could be made because the target machine actively refused it."}
+[2023-06-07 23:12:11.040]	local.info	jassue-gin/main.go:17	log init success!

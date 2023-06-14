@@ -1,0 +1,9 @@
+
+2023/06/07 22:52:12 D:/feiyuzhang/goproject/golangproject/jassue-gin/bootstrap/db.go:46
+[error] failed to initialize database, got error dial tcp 127.0.0.1:8306: connectex: No connection could be made because the target machine actively refused it.
+
+2023/06/07 23:02:50 D:/feiyuzhang/goproject/golangproject/jassue-gin/bootstrap/db.go:46
+[error] failed to initialize database, got error dial tcp 127.0.0.1:8306: connectex: No connection could be made because the target machine actively refused it.
+
+2023/06/07 23:11:43 D:/feiyuzhang/goproject/golangproject/jassue-gin/bootstrap/db.go:46
+[error] failed to initialize database, got error dial tcp 127.0.0.1:6306: connectex: No connection could be made because the target machine actively refused it.

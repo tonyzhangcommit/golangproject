@@ -2,22 +2,33 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"strings"
+	"log"
 )
 
-type Math struct {
-	x, y int
+func sayhelloName(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()  // 解析参数，默认是不会解析的
+    fmt.Println(r.Form)  // 这些信息是输出到服务器端的打印信息
+    fmt.Println("path", r.URL.Path)
+    fmt.Println("scheme", r.URL.Scheme)
+    fmt.Println(r.Form["url_long"])
+    for k, v := range r.Form {
+        fmt.Println("key:", k)
+        fmt.Println("val:", strings.Join(v, ""))
+    }
+    fmt.Fprintf(w, "Hello astaxie!") // 这个写入到 w 的是输出到客户端的
 }
 
-var m = map[string]Math{
-	"foo": Math{2, 3},
-}
 
 func main() {
-	v := []int{1,2,3}
-	for i,value  := range v{
-		fmt.Println((i))
-		v = append(v, value)
-	} 
-	fmt.Println(v)
+	fmt.Println("main begin...")
+
+	http.HandleFunc("/",sayhelloName)
+	err := http.ListenAndServe(":8888",nil)
+	if err != nil {
+		log.Fatal("bad ...")
+	}
+
 
 }
