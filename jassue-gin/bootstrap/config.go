@@ -33,6 +33,7 @@ func InitializeConfig() *viper.Viper {
 		}
 	})
 
+	// 将配置文件信息同步到结构体
 	if err := v.Unmarshal(&global.App.Config); err != nil {
 		fmt.Println(err)
 	}

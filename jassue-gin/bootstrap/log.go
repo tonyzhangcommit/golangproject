@@ -36,6 +36,7 @@ func createRootDir() {
 		_ = os.Mkdir(global.App.Config.Log.RootDir, os.ModePerm)
 	}
 }
+
 func setLogLevel() {
 	switch global.App.Config.Log.Level {
 	case "debug":
