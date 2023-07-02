@@ -1,0 +1,7 @@
+[2023-07-02 20:29:51.718]	Dev.info	orderingsystem/main.go:17	log init success!
+{"level":"Dev.info","ts":"[2023-07-02 20:30:47.291]","caller":"orderingsystem/main.go:17","msg":"log init success!"}
+[2023-07-02 20:37:34.607]	Dev.info	orderingsystem/main.go:17	log init success!
+[2023-07-03 00:49:21.843]	Dev.info	orderingsystem/main.go:17	log init success!
+[2023-07-03 00:49:30.211]	Dev.info	orderingsystem/main.go:17	log init success!
+[2023-07-03 00:50:59.581]	Dev.info	orderingsystem/main.go:17	log init success!
+[2023-07-03 00:52:20.098]	Dev.info	orderingsystem/main.go:17	log init success!
