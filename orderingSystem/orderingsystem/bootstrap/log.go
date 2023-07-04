@@ -35,10 +35,8 @@ func InitializeLog() *zap.Logger {
 	})
 
 	DBPriority := zap.LevelEnablerFunc(func(l zapcore.Level) bool {
-		return  l >= zap.InfoLevel
+		return l >= zap.InfoLevel
 	})
-
-
 
 	infoCore := zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(getInfoLogWriter(), zapcore.AddSync(os.Stdout)), lowPriority)
 	errorCore := zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(getErrorLogWriter(), zapcore.AddSync(os.Stdout)), highPriority)
