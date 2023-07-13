@@ -2,11 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"orderingsystem/bootstrap"
 	"orderingsystem/global"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -17,16 +14,18 @@ func main() {
 	global.App.Log.Info("log init success!")
 	global.App.DB = bootstrap.InitializeDatabase()
 	defer func() {
-        if global.App.DB != nil {
-            db, _ := global.App.DB.DB()
-            db.Close()
-        }
-    }()
+		if global.App.DB != nil {
+			db, _ := global.App.DB.DB()
+			db.Close()
+		}
+	}()
+	
+	bootstrap.InitializeValidator()
+	// r := gin.Default()
+	// r.GET("/test", func(c *gin.Context) {
+	// 	c.String(http.StatusOK, "hello world")
+	// })
 
-	r := gin.Default()
-	r.GET("/test", func(c *gin.Context) {
-		c.String(http.StatusOK, "hello world")
-	})
-
-	r.Run(":" + global.App.Config.App.Port)
+	// r.Run(":" + global.App.Config.App.Port)
+	bootstrap.RunServer()
 }
