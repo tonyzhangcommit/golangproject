@@ -1,8 +1,15 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"orderingsystem/app/controllers/management"
 
-func SetApiGroupRouters(router *gin.RouterGroup){
+	"github.com/gin-gonic/gin"
+)
+
+func SetApiGroupRouters(router *gin.RouterGroup) {
+	// 测试接口
+	router.POST("test/", management.Test)
+
 	// 公用接口
 	// 获取菜品分类，分类下菜品信息，获取店铺信息
 	router.GET("getcategory/")
@@ -28,6 +35,12 @@ func SetApiGroupRouters(router *gin.RouterGroup){
 	// 商户编辑，获取商户列表/信息
 	{
 		manageApi.POST("/login")
+		manageApi.POST("/createshpekeeper")
 		manageApi.GET("/getuserlist")
+		manageApi.POST("/createrole", management.CreateRole)
+		manageApi.POST("/createper", management.CreatePermission)
+		manageApi.Handle("GET","/editroleper", management.EditRolePermission)
+		manageApi.Handle("POST","/editroleper", management.EditRolePermission)
+		manageApi.Handle("DELETE","/editroleper", management.EditRolePermission)
 	}
 }

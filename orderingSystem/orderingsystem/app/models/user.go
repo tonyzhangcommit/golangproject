@@ -1,5 +1,7 @@
 package models
 
+import "strconv"
+
 // 用户表
 type User struct {
 	ID
@@ -12,6 +14,10 @@ type User struct {
 	Coupons []*Coupon `gorm:"many2many:user_coupons;"`
 	Shops   []Shop    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Orders  []Order   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+}
+
+func (user User) GetUid() string {
+	return strconv.Itoa(int(user.ID.ID))
 }
 
 // 角色表
