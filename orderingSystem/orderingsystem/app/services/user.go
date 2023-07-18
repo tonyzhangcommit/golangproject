@@ -27,7 +27,7 @@ func (userServices userServices) Test(params *request.CreateRole) (err error, ro
 }
 
 // 登录
-func (userServices userServices) Login(params *request.CreateRole) (err error, jwt string) {
+func (userServices userServices) Login(params *request.Login) (err error, jwt string) {
 	err = errors.New("登录失败")
 	jwt = ""
 	return
