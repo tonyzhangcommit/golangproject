@@ -7,6 +7,7 @@ type Resister struct {
 	Name     string `form:"name" json:"name" binding:"required"`
 	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
 	Password string `form:"password" json:"password" binding:"required"`
+	Role     string `form:"role" json:"role"`
 }
 
 func (register Resister) Getmessage() ValidatorMessages {
@@ -15,19 +16,35 @@ func (register Resister) Getmessage() ValidatorMessages {
 		"mobile.required":   "手机号码不能为空",
 		"mobile.mobile":     "手机号码格式错误",
 		"password.required": "用户密码不能为空",
+		"role.required":     "角色不能为空",
+	}
+}
+
+type Deleteuser struct {
+	Mobile string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Option string `form:"option" json:"option" binding:"required"`
+}
+
+func (deleteuser Deleteuser) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"option.required": "操作不能为空",
+		"mobile.required": "手机号码不能为空",
+		"mobile.mobile":   "手机号码格式错误",
 	}
 }
 
 type Login struct {
-	Name   string `form:"name" json:"name" binding:"required"`
-	Mobile string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Name     string `form:"name" json:"name" binding:"required"`
+	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Password string `form:"password" json:"password" binding:"required"`
 }
 
 func (login Login) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required":   "用户名不能为空",
-		"mobile:required": "手机号不能为空",
-		"mobile:mobile":   "手机号格式错误",
+		"name:required":     "用户名不能为空",
+		"password:required": "密码不能为空",
+		"mobile:required":   "手机号不能为空",
+		"mobile:mobile":     "手机号格式错误",
 	}
 }
 
