@@ -34,14 +34,15 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 超管接口
 	// 商户编辑，获取商户列表/信息
 	{
-		manageApi.POST("/login",management.Login)
-		manageApi.POST("/createuser",management.Createuser)
-		manageApi.POST("/deleteuser",management.DeleteUser)
+		manageApi.POST("/login", management.Login)
+		manageApi.POST("/getuserinfo", management.GetUserInfo)
+		manageApi.POST("/createuser", management.Createuser)
+		manageApi.POST("/edituser", management.Edituser)
 		manageApi.GET("/getuserlist") // 代理列表
 		manageApi.POST("/createrole", management.CreateRole)
 		manageApi.POST("/createper", management.CreatePermission)
-		manageApi.Handle("GET","/editroleper", management.EditRolePermission)
-		manageApi.Handle("POST","/editroleper", management.EditRolePermission)
-		manageApi.Handle("DELETE","/editroleper", management.EditRolePermission)
+		manageApi.Handle("GET", "/editroleper", management.EditRolePermission)
+		manageApi.Handle("POST", "/editroleper", management.EditRolePermission)
+		manageApi.Handle("DELETE", "/editroleper", management.EditRolePermission)
 	}
 }

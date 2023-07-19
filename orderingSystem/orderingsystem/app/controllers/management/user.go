@@ -36,12 +36,19 @@ func Login(c *gin.Context) {
 	var form request.Login
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
 	}
 
-	if err, role := services.UserServices.Login(&form); err != nil {
+	if err, user := services.UserServices.Login(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
-		response.Success(c, role)
+		// 创建jwt
+		tokenData, err, _ := services.JwtService.CreateToken(services.AppFuardName, user)
+		if err != nil {
+			response.BusinessFail(c, err.Error())
+			return
+		}
+		response.Success(c, tokenData)
 	}
 }
 
@@ -55,22 +62,45 @@ func Createuser(c *gin.Context) {
 		return
 	}
 
-	if err,user := services.UserServices.CreateUser(&form); err != nil {
+	if err, user := services.UserServices.CreateUser(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
 		response.Success(c, user)
 	}
 }
 
+func GetUserInfo(c *gin.Context) {
+	var form request.GetUserInfo
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
+	}
+	if err, user := services.UserServices.GetUserInfo(&form); err != nil {
+		response.TokenFail(c, err.Error())
+		return
+	} else {
+		var roles []string
+		type responseuser struct {
+			Name  string
+			Roles []string
+		}
+		for _, item := range user.Roles {
+			roles = append(roles, item.Name)
+		}
+		response.Success(c, responseuser{user.Name, roles})
+	}
+}
+
 // 删除用户并清除关联关系
-func DeleteUser(c *gin.Context) {
+func Edituser(c *gin.Context) {
 	var form request.Deleteuser
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
 		return
 	}
-	if err := services.UserServices.Deleteuser(&form); err != nil {
+	if err := services.UserServices.Edituser(&form); err != nil {
 		response.BusinessFail(c, err.Error())
+		return
 	} else {
 		response.Success(c, "操作成功")
 	}
@@ -85,6 +115,7 @@ func CreateRole(c *gin.Context) {
 	}
 	if err, role := services.UserServices.CreateRole(&form); err != nil {
 		response.BusinessFail(c, err.Error())
+		return
 	} else {
 		response.Success(c, role)
 	}
@@ -99,6 +130,7 @@ func CreatePermission(c *gin.Context) {
 	}
 	if err, role := services.UserServices.CreatePermission(&form); err != nil {
 		response.BusinessFail(c, err.Error())
+		return
 	} else {
 		response.Success(c, role)
 	}
@@ -115,6 +147,7 @@ func EditRolePermission(c *gin.Context) {
 		method := c.Request.Method
 		if err, role := services.UserServices.EditRolePermission(&form, method); err != nil {
 			response.BusinessFail(c, err.Error())
+			return
 		} else {
 			response.Success(c, role)
 		}

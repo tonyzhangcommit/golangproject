@@ -6,6 +6,8 @@ import (
 	"orderingsystem/app/models"
 	"orderingsystem/global"
 	"orderingsystem/utils"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 type userServices struct {
@@ -27,15 +29,36 @@ func (userServices userServices) Test(params *request.CreateRole) (err error, ro
 }
 
 // 登录
-func (userServices userServices) Login(params *request.Login) (err error, jwt string) {
-	err = errors.New("登录失败")
-	jwt = ""
+func (userServices userServices) Login(params *request.Login) (err error, user models.User) {
+	err = global.App.DB.Model(&user).Where("telnumber = ?", params.Mobile).First(&user).Error
+	if err != nil || utils.BcryptMakeCheck([]byte(user.Password), params.Password) {
+		err = errors.New("用户不存在/密码错误")
+	}
 	return
 }
 
+// 获取用户信息
+// 用户名， 角色
+func (userServices userServices) GetUserInfo(params *request.GetUserInfo) (err error, user models.User) {
+	tokenStr := params.Jwt
+	token, err := jwt.ParseWithClaims(tokenStr, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(global.App.Config.Jwt.Secret), nil
+	})
+	if err != nil {
+		err = errors.New("授权失败")
+		return
+	}
+	claims := token.Claims.(*CustomClaims)
+	userId := claims.Id
+	if err = global.App.DB.Preload("Roles").First(&user, userId).Error; err != nil {
+		err = errors.New("用户不存在")
+		return
+	}
+	return
+}
 
 // 创建用户 CreateUser
-func (userServices userServices) CreateUser(params *request.Resister) (err error,user models.User) {
+func (userServices userServices) CreateUser(params *request.Resister) (err error, user models.User) {
 	// 首先判断用户角色
 	errT := global.App.DB.First(&user, "telnumber = ?", params.Mobile).Error
 	errN := global.App.DB.First(&user, "name = ?", params.Name).Error
@@ -74,30 +97,26 @@ func (userServices userServices) CreateUser(params *request.Resister) (err error
 }
 
 // 删除用户
-func (userServices userServices) Deleteuser(params *request.Deleteuser) (err error) {
+func (userServices userServices) Edituser(params *request.Deleteuser) (err error) {
 	var user models.User
 	if err = global.App.DB.Model(&user).Where("telnumber= ?", params.Mobile).First(&user).Error; err != nil {
 		err = errors.New("用户不存在")
 		return
 	} else {
 		// 删除流程，用户关联 权限，优惠券，店铺，订单
-		if params.Option == "delete"{
+		if params.Option == "delete" {
 			global.App.DB.Select("Roles", "Coupons", "Shops", "Orders").Delete(&user)
 			if err != nil {
 				err = errors.New("删除失败")
 			}
-		}else if params.Option == "edit"{
-			err = global.App.DB.Model(&models.User{}).Where("id",user.ID.ID).Update("status",!user.Status).Error
-		}else{
+		} else if params.Option == "edit" {
+			err = global.App.DB.Model(&models.User{}).Where("id", user.ID.ID).Update("status", !user.Status).Error
+		} else {
 			err = errors.New("参数错误")
 		}
 		return
 	}
 }
-
-// 更改用户状态， 每次操作取反
-
-
 
 // 创建角色
 func (userServices userServices) CreateRole(params *request.CreateRole) (err error, role models.Role) {

@@ -33,6 +33,7 @@ func (deleteuser Deleteuser) Getmessage() ValidatorMessages {
 	}
 }
 
+// 登录
 type Login struct {
 	Name     string `form:"name" json:"name" binding:"required"`
 	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
@@ -45,6 +46,18 @@ func (login Login) Getmessage() ValidatorMessages {
 		"password:required": "密码不能为空",
 		"mobile:required":   "手机号不能为空",
 		"mobile:mobile":     "手机号格式错误",
+	}
+}
+
+// 获取用户信息
+// 用户名，权限
+type GetUserInfo struct {
+	Jwt string `form:"jwt" json:"jwt" binding:"required"`
+}
+
+func (getuserinfo GetUserInfo) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"jwt:required": "参数不能为空",
 	}
 }
 
