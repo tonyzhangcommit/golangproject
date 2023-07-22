@@ -3,6 +3,7 @@ package response
 import (
 	"net/http"
 	"orderingsystem/global"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -43,4 +44,21 @@ func BusinessFail(c *gin.Context, msg string) {
 }
 func TokenFail(c *gin.Context, msg string) {
 	Fail(c, global.Errors.TokenError.ErrorCode, msg)
+}
+
+func ServerError(c *gin.Context, err interface{}) {
+	msg := "internet server error"
+
+	if global.App.Config.App.Env != "production" && os.Getenv(gin.EnvGinMode) != gin.ReleaseMode {
+		if _, ok := err.(error); ok {
+			msg = err.(error).Error()
+		}
+	}
+
+	c.JSON(http.StatusInternalServerError, Response{
+		http.StatusInternalServerError,
+		nil,
+		msg,
+	})
+	c.Abort()
 }

@@ -1,0 +1,1 @@
+[2023-07-22 18:11:57.013]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 172.27.221.16:6379: i/o timeout"}

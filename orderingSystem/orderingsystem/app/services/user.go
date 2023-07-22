@@ -57,6 +57,14 @@ func (userServices userServices) GetUserInfo(params *request.GetUserInfo) (err e
 	return
 }
 
+func (userServices userServices) GetUserInfoById(userId int64) (err error, user models.User) {
+	if err = global.App.DB.Preload("Roles").First(&user, userId).Error; err != nil {
+		err = errors.New("用户不存在")
+		return
+	}
+	return
+}
+
 // 创建用户 CreateUser
 func (userServices userServices) CreateUser(params *request.Resister) (err error, user models.User) {
 	// 首先判断用户角色

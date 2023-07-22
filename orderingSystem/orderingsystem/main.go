@@ -19,8 +19,9 @@ func main() {
 			db.Close()
 		}
 	}()
-	
+
 	bootstrap.InitializeValidator()
+	global.App.Redis = bootstrap.InitializeRedis()
 	// r := gin.Default()
 	// r.GET("/test", func(c *gin.Context) {
 	// 	c.String(http.StatusOK, "hello world")
