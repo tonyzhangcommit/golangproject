@@ -1,1 +1,2 @@
 [2023-07-22 18:11:57.013]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 172.27.221.16:6379: i/o timeout"}
+[2023-07-23 19:39:27.394]	Dev.error	bootstrap/db.go:43	mysql connect failed, err:	{"err": "Error 1049 (42000): Unknown database 'orderingsystem'"}

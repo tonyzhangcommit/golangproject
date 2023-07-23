@@ -12,11 +12,11 @@ type Resister struct {
 
 func (register Resister) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name.required":     "用户名称不能为空",
-		"mobile.required":   "手机号码不能为空",
-		"mobile.mobile":     "手机号码格式错误",
-		"password.required": "用户密码不能为空",
-		"role.required":     "角色不能为空",
+		"name:required":     "用户名称不能为空",
+		"mobile:required":   "手机号码不能为空",
+		"mobile:mobile":     "手机号码格式错误",
+		"password:required": "用户密码不能为空",
+		"role:required":     "角色不能为空",
 	}
 }
 
@@ -27,9 +27,9 @@ type Deleteuser struct {
 
 func (deleteuser Deleteuser) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"option.required": "操作不能为空",
-		"mobile.required": "手机号码不能为空",
-		"mobile.mobile":   "手机号码格式错误",
+		"option:required": "操作不能为空",
+		"mobile:required": "手机号码不能为空",
+		"mobile:mobile":   "手机号码格式错误",
 	}
 }
 
@@ -63,23 +63,27 @@ func (getuserinfo GetUserInfo) Getmessage() ValidatorMessages {
 
 //  创建角色
 type CreateRole struct {
-	Name string `json:"name" binding:"required"`
+	Name   string `json:"name" binding:"required"`
+	Option string `json:"option" binding:"required"`
 }
 
 func (createRole CreateRole) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required": "角色名不能为空",
+		"name:required":   "角色名不能为空",
+		"option:required": "操作类型不能为空",
 	}
 }
 
 // 创建权限
 type CreatePermission struct {
-	Name string `json:"name" binding:"required"`
+	Name   string `json:"name" binding:"required"`
+	Option string `json:"option" binding:"required"`
 }
 
 func (createPermission CreatePermission) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required": "权限名不能为空",
+		"name:required":   "权限名不能为空",
+		"option:required": "操作类型不能为空",
 	}
 }
 

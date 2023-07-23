@@ -55,6 +55,8 @@ func Login(c *gin.Context) {
 
 // 登出接口
 func LoginOut(c *gin.Context) {
+	fmt.Println(c.Keys["token"])
+	fmt.Println("asdfasdfasdf")
 	err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
 	if err != nil {
 		response.BusinessFail(c, "登出失败")
@@ -69,7 +71,6 @@ func Createuser(c *gin.Context) {
 	var form request.Resister
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
-		fmt.Println(err)
 		return
 	}
 

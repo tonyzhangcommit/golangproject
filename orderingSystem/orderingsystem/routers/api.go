@@ -11,7 +11,7 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 公用接口
 	// 获取菜品分类，分类下菜品信息，获取店铺信息
 	router.POST("/login", management.Login)
-	router.POST("/logout", management.LoginOut)
+
 	router.GET("getcategory/")
 	router.GET("getmenu/")
 	router.GET("getshopinfo/")
@@ -39,15 +39,17 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	}
 
 	manageApi := router.Group("manage/").Use(middleware.JWTAuth("manager"))
+	// manageApi := router.Group("manage/")
 	// 超管接口
 	// 商户编辑，获取商户列表/信息
 	{
 		manageApi.POST("/getuserinfo", management.GetUserInfo)
+		manageApi.POST("/logout", management.LoginOut)
 		manageApi.POST("/createuser", management.Createuser)
 		manageApi.POST("/edituser", management.Edituser)
 		manageApi.GET("/getuserlist") // 代理列表
-		manageApi.POST("/createrole", management.CreateRole)
-		manageApi.POST("/createper", management.CreatePermission)
+		manageApi.POST("/editrole", management.CreateRole)
+		manageApi.POST("/editper", management.CreatePermission)
 		manageApi.Handle("GET", "/editroleper", management.EditRolePermission)
 		manageApi.Handle("POST", "/editroleper", management.EditRolePermission)
 		manageApi.Handle("DELETE", "/editroleper", management.EditRolePermission)

@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"fmt"
 	"orderingsystem/app/models"
 	"orderingsystem/global"
 	"orderingsystem/utils"
@@ -44,6 +45,7 @@ func (jwtService *jwtService) CreateToken(GuardName string, user models.User) (t
 	for _, value := range user.Roles {
 		userRole = append(userRole, value.Name)
 	}
+	fmt.Println(userRole,"userroles",user.Roles)
 	token = jwt.NewWithClaims(
 		jwt.SigningMethodHS256,
 		CustomClaims{

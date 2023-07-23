@@ -1,0 +1,77 @@
+系统接口列表(请求数据格式均为json)
+    新增/删除角色：
+        url : /api/manage/editrole
+        method: POST
+        parame: {
+            "name":"shopkeeper",
+            "option":"add"/"delete"
+        }
+    新增/删除权限：
+        url : /api/manage/editper
+        method: POST
+        parame: {
+            "name":"CreateMoreshop",
+            "option":"add"/"delete"
+        }
+    编辑权限和角色的关系 DeleteShop CreateMoreShop  shopkeeper manager
+        url : /api/manage/editroleper
+        method: GET        查询
+        parame: {
+            "rolename":"manager",
+            "permissionname":"add"
+        }
+
+        url : /api/manage/editroleper
+        method: POST        新增
+        parame: {
+            "rolename":"manager",
+            "permissionname":"add"
+        }
+
+        url : /api/manage/editroleper
+        method: DELETE       删除
+        parame: {
+            "rolename":"manager",
+            "permissionname":"add"
+        }
+        
+    创建用户（仅限于商户和管理员）：
+        url : /api/manage/createuser
+        method: POST
+        parame: {
+            "name":"shopkeeper",
+            "mobile":"18510156303",
+            "password":"!@#$%^&*",
+            "role":"shopkeeper",
+        }
+    编辑用户（仅限于商户和管理员）：
+        url : /api/manage/edituser
+        method: POST
+        parame: {
+            "mobile":"18510156303",
+            "option":"delete"/"edit",
+        }
+    获取用户信息（仅限于商户和管理员）：
+        url : /api/manage/getuserinfo
+        method: POST
+        parame: {
+            "jwt":"jwt string",
+        }
+    登录（仅限于商户和管理员）
+        url : /api/login
+        method: POST
+        parame: {
+            "name":"superadmin",
+            "mobile":"15101066802",
+            "password":"password",
+        }
+    登出（仅限于商户和管理员）
+    url : /api/manage/logout  /api/shop/logout
+        method: POST
+        parame: {
+            "name":"superadmin",
+            "mobile":"15101066802",
+            "password":"password",
+        }
+    
+    

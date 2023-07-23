@@ -30,8 +30,9 @@ func (userServices userServices) Test(params *request.CreateRole) (err error, ro
 
 // 登录
 func (userServices userServices) Login(params *request.Login) (err error, user models.User) {
-	err = global.App.DB.Model(&user).Where("telnumber = ?", params.Mobile).First(&user).Error
-	if err != nil || utils.BcryptMakeCheck([]byte(user.Password), params.Password) {
+	err = global.App.DB.Model(&user).Where("telnumber = ?", params.Mobile).Preload("Roles").First(&user).Error
+	println(utils.BcryptMakeCheck([]byte(params.Password), user.Password))
+	if err != nil || !utils.BcryptMakeCheck([]byte(params.Password), user.Password) {
 		err = errors.New("用户不存在/密码错误")
 	}
 	return
@@ -104,7 +105,7 @@ func (userServices userServices) CreateUser(params *request.Resister) (err error
 	return
 }
 
-// 删除用户
+// 编辑用户
 func (userServices userServices) Edituser(params *request.Deleteuser) (err error) {
 	var user models.User
 	if err = global.App.DB.Model(&user).Where("telnumber= ?", params.Mobile).First(&user).Error; err != nil {
@@ -119,6 +120,9 @@ func (userServices userServices) Edituser(params *request.Deleteuser) (err error
 			}
 		} else if params.Option == "edit" {
 			err = global.App.DB.Model(&models.User{}).Where("id", user.ID.ID).Update("status", !user.Status).Error
+		} else if params.Option == "changerole" {
+			// 参数会给个角色名，如果当前用户没有此角色，则增加，有的话就删除
+			err = errors.New("参数错误")
 		} else {
 			err = errors.New("参数错误")
 		}
@@ -129,11 +133,26 @@ func (userServices userServices) Edituser(params *request.Deleteuser) (err error
 // 创建角色
 func (userServices userServices) CreateRole(params *request.CreateRole) (err error, role models.Role) {
 	err = global.App.DB.First(&models.Role{}, "name = ?", params.Name).Error
-	if err != nil {
-		role = models.Role{Name: params.Name}
-		err = global.App.DB.Create(&role).Error
+	if params.Option == "add" {
+		if err != nil {
+			role = models.Role{Name: params.Name}
+			err = global.App.DB.Create(&role).Error
+		} else {
+			err = errors.New("角色名已存在")
+		}
+	} else if params.Option == "delete" {
+		if err == nil {
+			err = global.App.DB.Select("Permissions").Where("name", params.Name).Delete(&role).Error
+			if err != nil {
+				err = errors.New("删除失败")
+			} else {
+				err = errors.New("删除成功")
+			}
+		} else {
+			err = errors.New("角色不存在")
+		}
 	} else {
-		err = errors.New("角色名已存在")
+		err = errors.New("option参数错误")
 	}
 	return
 }
@@ -141,11 +160,26 @@ func (userServices userServices) CreateRole(params *request.CreateRole) (err err
 // 创建权限
 func (userServices userServices) CreatePermission(params *request.CreatePermission) (err error, per models.Permission) {
 	err = global.App.DB.First(&models.Permission{}, "name = ?", params.Name).Error
-	if err != nil {
-		per = models.Permission{Name: params.Name}
-		err = global.App.DB.Create(&per).Error
+	if params.Option == "add" {
+		if err != nil {
+			per = models.Permission{Name: params.Name}
+			err = global.App.DB.Create(&per).Error
+		} else {
+			err = errors.New("权限名已存在")
+		}
+	} else if params.Option == "delete" {
+		if err == nil {
+			err = global.App.DB.Select("Roles").Where("name", params.Name).Delete(&per).Error
+			if err != nil {
+				err = errors.New("删除失败")
+			} else {
+				err = errors.New("删除成功")
+			}
+		} else {
+			err = errors.New("权限不存在")
+		}
 	} else {
-		err = errors.New("权限已存在")
+		err = errors.New("option参数错误")
 	}
 	return
 }

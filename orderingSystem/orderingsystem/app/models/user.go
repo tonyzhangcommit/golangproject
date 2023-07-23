@@ -7,7 +7,7 @@ type User struct {
 	ID
 	Name      string `json:"name" gorm:"not null;column:name;comment:用户名"`
 	Telnumber string `json:"telnumber" gorm:"column:telnumber;comment:电话"`
-	Password  string `json:"password" gorm:"column:password;comment:密码"`
+	Password  string `json:"-" gorm:"column:password;comment:密码"`
 	Status    bool   `json:"status" gorm:"column:status;default:true;comment:状态"`
 	Timestamps
 	Roles   []Role    `gorm:"many2many:user_roles;"`

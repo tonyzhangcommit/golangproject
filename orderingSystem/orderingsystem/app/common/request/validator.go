@@ -15,6 +15,7 @@ func GetErrorMsg(request interface{}, err error) string {
 		_, isValidator := request.(Validator)
 		for _, v := range err.(validator.ValidationErrors) {
 			if isValidator {
+
 				if message, exit := request.(Validator).Getmessage()[v.Field()+":"+v.Tag()]; exit {
 					return message
 				}

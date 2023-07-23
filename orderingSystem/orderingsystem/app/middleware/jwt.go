@@ -16,7 +16,7 @@ import (
 // 调用方式 authRouter := router.Group("").Use(middleware.JWTAuth(services.AppGuardName))
 
 // 首先封装验证 JWT 基础功能
-func ValidJWT(tokenStr string) (token *jwt.Token, claims services.CustomClaims, err error) {
+func ValidJWT(tokenStr string) (token *jwt.Token, claims *services.CustomClaims, err error) {
 	token, err = jwt.ParseWithClaims(tokenStr, &services.CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(global.App.Config.Jwt.Secret), nil
 	})
@@ -26,7 +26,7 @@ func ValidJWT(tokenStr string) (token *jwt.Token, claims services.CustomClaims, 
 		err = errors.New("认证失败")
 		return
 	}
-	claims = token.Claims.(services.CustomClaims)
+	claims = token.Claims.(*services.CustomClaims)
 	return
 }
 
@@ -43,7 +43,7 @@ func JWTAuth(auth string) gin.HandlerFunc {
 		token, claims, err := ValidJWT(tokenStr)
 
 		if err != nil || services.JwtService.IsInBlacklist(tokenStr) {
-			response.TokenFail(c, err.Error())
+			response.TokenFail(c, "登录已过期，请重新登录")
 			c.Abort()
 			return
 		}
