@@ -29,13 +29,20 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 创建店铺, 生成桌号二维码，菜品编辑
 	{
 		shopApi.POST("/getuserinfo", management.GetUserInfo)
-		shopApi.Handle("GET", "/shopinfo") // 店铺信息
-		shopApi.Handle("POST", "/shopinfo")
-		shopApi.POST("/getorderlist") // 获取订单列表/单个订单信息
-		shopApi.POST("/gettablelist") // 获取座位列表/单个座位信息
-		shopApi.Handle("GET", "/menu")
-		shopApi.Handle("POST", "/menu")
-		shopApi.Handle("DELETE", "/menu")
+		shopApi.Handle("GET", "/createdit", management.CreateEditShop)   // 店铺信息
+		shopApi.Handle("POST", "/createdit", management.CreateEditShop)  // 新增或修改店铺信息
+		shopApi.GET("/categorylist/:shopid", management.GetCategoryList) // 菜品分类信息，包含菜品信息
+		shopApi.POST("/createditcategory", management.CreatEditCategory) // 新增或修改菜品分类信息
+		shopApi.Handle("GET", "/menu", management.CreatEditMenu)         // 获取菜品列表
+		shopApi.Handle("POST", "/menu", management.CreatEditMenu)        // 新建/更新菜品
+		shopApi.GET("/tableslist")                                       // 获取座位列表
+		shopApi.GET("/tableinfo")                                        // 获取座位详细信息
+		shopApi.POST("/createstables")                                   // 创建座位列表
+		shopApi.POST("/edittables")                                      // 编辑座位（add edit delete）
+		shopApi.POST("/editorderinfo")                                   // 编辑订单，主要是加减菜，使用优惠券等
+		shopApi.GET("/getorderlist")                                     // 获取订单列表
+		// 运营模块  日，周，月，分析
+
 	}
 
 	manageApi := router.Group("manage/").Use(middleware.JWTAuth("manager"))

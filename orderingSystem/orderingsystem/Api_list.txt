@@ -73,5 +73,23 @@
             "mobile":"15101066802",
             "password":"password",
         }
+
+    获取店铺信息
+    url : /api/shop/createdit
+    method: GET
+    parame: {
+            "id":1,   // 店铺ID 必填
+        }
+    创建或者更新店铺信息
+    url : /api/shop/createdit
+    method:POST
+    parame: {
+            "id":1,
+            "userid":1,
+            "name":"渔家小馆",
+            "address":"北京市门头沟区**********",
+            "option" :"create" / "edit"
+        }
+
     
     

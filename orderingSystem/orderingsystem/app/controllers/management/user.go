@@ -10,13 +10,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type User struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
 
 //  主要包含每个请求中的调用逻辑，是gin中的handler
-
 func Test(c *gin.Context) {
 	var form request.CreateRole
 	if err := c.ShouldBindJSON(&form); err != nil {
@@ -93,13 +88,14 @@ func GetUserInfo(c *gin.Context) {
 	} else {
 		var roles []string
 		type responseuser struct {
+			Id    uint
 			Name  string
 			Roles []string
 		}
 		for _, item := range user.Roles {
 			roles = append(roles, item.Name)
 		}
-		response.Success(c, responseuser{user.Name, roles})
+		response.Success(c, responseuser{user.ID.ID, user.Name, roles})
 	}
 }
 
