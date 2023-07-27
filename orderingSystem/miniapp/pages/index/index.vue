@@ -26,10 +26,10 @@
 					</view>
 					<view class="right">
 						<view class="dinein" :class="{active: orderType == 'takein'}" @tap="SET_ORDER_TYPE('takein')">
-							<text>堂食</text>
+							<text>自取</text>
 						</view>
 						<view class="takeout" :class="{active: orderType == 'takeout'}" @tap="takout">
-							<text>外带</text>
+							<text>外卖</text>
 						</view>
 					</view>
 				</view>
@@ -478,5 +478,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	@import '~@/pages/menu/menu.scss';
+	@import '~@/pages/index/index.scss';
 </style>
