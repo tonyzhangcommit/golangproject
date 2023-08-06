@@ -12,8 +12,8 @@ type shopServices struct {
 
 var ShopServices = new(shopServices)
 
-func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, method string) (shop models.Shop, err error) {
-
+func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, method string) (user models.User, err error) {
+	var shop models.Shop
 	if method == "GET" {
 		// 需要店铺ID
 		if parame.Id == 0 {
@@ -33,8 +33,7 @@ func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, 
 			}
 			shop = models.Shop{UserID: parame.UserId, Name: parame.Name, Address: parame.Address}
 			result := global.App.DB.Create(&shop)
-
-			err = global.App.DB.Model(&models.User{}).Where("id=?", parame.UserId).Association("Shops").Append(&shop)
+			err := global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
 			if result.Error != nil || err != nil {
 				err = errors.New("创建失败")
 			}
@@ -48,27 +47,33 @@ func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, 
 			}
 			shop.Address = parame.Address
 			shop.Name = parame.Name
-			err = global.App.DB.Save(&shop).Error
-			if err != nil {
+			if err = global.App.DB.Save(&shop).Error; err != nil {
 				err = errors.New("店铺更新失败")
+				return
 			}
+
 		} else if parame.Option == "delete" {
-			err = errors.New("请求参数有误！")
+			if err = global.App.DB.First(&shop, parame.Id).Error; err != nil {
+				err = errors.New("店铺不存在")
+				return
+			}
+			global.App.DB.Delete(&shop, parame.Id)
 		} else {
 			err = errors.New("请求参数有误！")
 		}
+		err = global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
 	}
 	return
 }
 
-func (ShopServices shopServices) CreatEditCategory(parame *request.Category) (category models.Catagory, err error) {
+func (ShopServices shopServices) CreatEditCategory(parame *request.Category) (shop models.Shop, err error) {
 	var user models.User
+	var category models.Catagory
 	if err = global.App.DB.Preload("Shops").First(&user, parame.UserId).Error; err != nil {
 		err = errors.New("用户不存在")
 		return
 	}
 	isRightShop := false
-	var shop models.Shop
 	for _, s := range user.Shops {
 		if s.ID.ID == parame.ShopId {
 			isRightShop = true
@@ -82,9 +87,11 @@ func (ShopServices shopServices) CreatEditCategory(parame *request.Category) (ca
 	}
 	if parame.Option == "create" {
 		category.Name = parame.Name
-		if err = global.App.DB.Model(&shop).Association("Catagories").Append(&category); err != nil {
+		category.ShopID = parame.ShopId
+		errCreate := global.App.DB.Create(&category).Error
+		err = global.App.DB.Preload("Catagories").First(&shop, parame.ShopId).Error
+		if errCreate != nil || err != nil {
 			err = errors.New("创建失败")
-			return
 		}
 	} else if parame.Option == "edit" {
 		if parame.CategoryId == 0 {
@@ -93,14 +100,40 @@ func (ShopServices shopServices) CreatEditCategory(parame *request.Category) (ca
 		}
 		if err = global.App.DB.First(&category, parame.CategoryId).Error; err != nil {
 			err = errors.New("分类不存在")
+			return
 		}
 		category.ID.ID = parame.CategoryId
 		category.Name = parame.Name
-		if err = global.App.DB.Save(&user).Error; err != nil {
-			err = errors.New("更新失败")
-		}
+		global.App.DB.Save(&category)
+		err = global.App.DB.Preload("Catagories").First(&shop, parame.ShopId).Error
 	} else {
 		err = errors.New("参数错误")
 	}
+	return
+}
+
+func (ShopServices shopServices) CreatCuisine(parame *request.Cuisine, imageurls []string) (cuisine models.Cuisine, err error) {
+	var category models.Catagory
+	if err = global.App.DB.First(&category, parame.CatagoryId).Error; err != nil {
+		err = errors.New("分类不存在")
+		return
+	}
+	cuisine.CatagoryID = parame.CatagoryId
+	cuisine.Name = parame.Name
+	cuisine.Price = parame.Price
+	cuisine.Peculiarity = parame.Peculiarity
+	cuisineObj := global.App.DB.Create(&cuisine)
+	if cuisineObj.Error != nil {
+		err = cuisineObj.Error
+		return
+	}
+	for _, url := range imageurls {
+		imageurl := models.Image{
+			CuisineID: cuisine.ID.ID,
+			ImageUrl:  url,
+		}
+		global.App.DB.Create(&imageurl)
+	}
+	global.App.DB.Preload("Images").First(&cuisine)
 	return
 }

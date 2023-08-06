@@ -25,3 +25,18 @@ func (category Category) Getmessage() ValidatorMessages {
 		"option:required": "option不能为空",
 	}
 }
+
+type Cuisine struct {
+	CatagoryId  uint    `form:"catagoryid" json:"catagoryid" binding:"required"`
+	Name        string  `form:"name" json:"name" binding:"required"`
+	Price       float32 `form:"price" json:"price" binding:"required"`
+	Peculiarity string  `form:"peculiarity" json:"peculiarity"`
+}
+
+func (cuisine Cuisine) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"catagoryid:required": "分类不能为空",
+		"name:required":       "菜名不能为空",
+		"price:required":      "价格不能为空",
+	}
+}

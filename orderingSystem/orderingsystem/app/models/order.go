@@ -13,6 +13,7 @@ type Coupon struct {
 	Timestamps
 }
 
+// 订单表
 type Order struct {
 	ID
 	UserID      uint
@@ -22,5 +23,6 @@ type Order struct {
 	ActualPrice float32   `json:"actualprice" gorm:"not null;column:actualprice;comment:实际价格"`
 	Coupons     []*Coupon `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Status      string    `json:"status" gorm:"column:status;comment:状态"`
+	PayWay      string    `json:"payway" gorm:"column:payway;comment:支付方式"`
 	Timestamps
 }

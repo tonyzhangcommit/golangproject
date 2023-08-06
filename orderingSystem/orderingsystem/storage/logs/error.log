@@ -1,2 +1,4 @@
 [2023-07-22 18:11:57.013]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 172.27.221.16:6379: i/o timeout"}
 [2023-07-23 19:39:27.394]	Dev.error	bootstrap/db.go:43	mysql connect failed, err:	{"err": "Error 1049 (42000): Unknown database 'orderingsystem'"}
+[2023-08-06 23:08:00.087]	Dev.error	bootstrap/db.go:60	migrate table failed	{"err": "Error 1830 (HY000): Column 'user_id' cannot be NOT NULL: needed in a foreign key constraint 'fk_users_shops' SET NULL"}
+[2023-08-06 23:16:50.209]	Dev.error	bootstrap/db.go:60	migrate table failed	{"err": "Error 1830 (HY000): Column 'user_id' cannot be NOT NULL: needed in a foreign key constraint 'fk_users_shops' SET NULL"}

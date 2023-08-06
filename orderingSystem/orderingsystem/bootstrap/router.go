@@ -18,6 +18,7 @@ import (
 func setupRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(middleware.CustomRecovery(), middleware.Core())
+	router.Static("/static/images", "./static/images")
 	apiGroup := router.Group("/api")
 	routers.SetApiGroupRouters(apiGroup)
 	return router
