@@ -48,6 +48,5 @@ type Cuisine struct {
 	Sales       uint64  `json:"sales" gorm:"column:sales;comment:销量"`               // 统计月销量
 	Repeat      uint64  `json:"repeat" gorm:"column:repeat;comment:回头客"`            // 统计回头客
 	Peculiarity string  `json:"peculiarity" gorm:"column:peculiarity;comment:特色简介"`
-	Orders      []Order `gorm:"many2many:Order_Cuisine;"`
 	Timestamps
 }
