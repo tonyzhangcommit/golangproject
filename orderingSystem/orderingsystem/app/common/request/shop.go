@@ -9,6 +9,7 @@ type CreateEditShop struct {
 	Option  string `form:"option" json:"option"`
 }
 
+
 type Category struct {
 	UserId     uint   `form:"userid" json:"userid" binding:"required"`
 	ShopId     uint   `form:"shopid" json:"shopid" binding:"required"`

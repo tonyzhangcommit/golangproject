@@ -1,3 +1,124 @@
+角色：
+    shopkeeper
+    manager
+权限：
+    CreateMoreShop   // 默认情况下一个店主只能开一个店铺
+    DeleteShop       // 删除店铺
+用户：
+    superadmin  18434368518  !@#$%^&*
+    shopkeeper001   18510156303 !@#$%^&*
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJSb2xlcyI6WyJzaG9wa2VlcGVyIl0sIlVzZXJTdGF0dXMiOnRydWUsIlVzZXJOYW1lIjoic2hvcGtlZXBlcjAwMSIsIlVzZXJUZWwiOiIxODUxMDE1NjMwMyIsImV4cCI6MTY5Mjk3NDg4NywianRpIjoiMiIsImlzcyI6Im1hbmFnZSIsIm5iZiI6MTY5MTY3Nzg4N30.rtN0GBoc9Js2MwPG4gvL6aDm-tFEkTnaT6vwVdjGUK4
+    暂定过期时间为一个月，暂时将用户登录验证中间件去掉
+
+店铺：
+{
+    "error_code": 0,
+    "data": {
+        "id": 1,
+        "userid": 2,
+        "name": "山城人家",
+        "address": "北京市大兴区德祥路熙悦林语",
+        "Tables": [],
+        "Catagories": [
+            {
+                "id": 1,
+                "name": "凉菜",
+                "Cuisines": [
+                    {
+                        "id": 1,
+                        "CatagoryID": 1,
+                        "name": "火山飘雪",
+                        "Images": [
+                            {
+                                "id": 1,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/ee6b61e8-b7f8-41ed-97ff-d90a23dec1a8huangmenji.jpg"
+                            },
+                            {
+                                "id": 2,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/054f3d58-2dc3-4b5d-89d2-3bf2fd1cd4bekaoya.jpg"
+                            },
+                            {
+                                "id": 3,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/dee0a25f-5d59-4f72-8c57-34faaac1a588zhujiaofan.jpg"
+                            }
+                        ],
+                        "price": 10.88,
+                        "sales": 0,
+                        "repeat": 0,
+                        "peculiarity": "酸甜可口"
+                    },
+                    {
+                        "id": 1,
+                        "CatagoryID": 1,
+                        "name": "火山飘雪",
+                        "Images": [
+                            {
+                                "id": 1,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/ee6b61e8-b7f8-41ed-97ff-d90a23dec1a8huangmenji.jpg"
+                            },
+                            {
+                                "id": 2,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/054f3d58-2dc3-4b5d-89d2-3bf2fd1cd4bekaoya.jpg"
+                            },
+                            {
+                                "id": 3,
+                                "CuisineID": 1,
+                                "imageurl": "http://localhost:9000/static/images/dee0a25f-5d59-4f72-8c57-34faaac1a588zhujiaofan.jpg"
+                            }
+                        ],
+                        "price": 10.88,
+                        "sales": 0,
+                        "repeat": 0,
+                        "peculiarity": "酸甜可口"
+                    }
+                ],
+                "ShopID": 1
+            },
+            {
+                "id": 2,
+                "name": "热菜",
+                "Cuisines": [
+                    {
+                        "id": 3,
+                        "CatagoryID": 2,
+                        "name": "北京烤鸭",
+                        "Images": [
+                            {
+                                "id": 5,
+                                "CuisineID": 3,
+                                "imageurl": "http://localhost:9000/static/images/5e0df678-f113-48d0-bc0c-656e6a13bafckaoya.jpg"
+                            },
+                            {
+                                "id": 6,
+                                "CuisineID": 3,
+                                "imageurl": "http://localhost:9000/static/images/48961ea5-bb0c-4f4f-a697-4c1b54316f07zhujiaofan.jpg"
+                            }
+                        ],
+                        "price": 198.99,
+                        "sales": 0,
+                        "repeat": 0,
+                        "peculiarity": "秘制酱料，地道北京味儿"
+                    }
+                ],
+                "ShopID": 1
+            },
+            {
+                "id": 3,
+                "name": "酒水",
+                "Cuisines": [],
+                "ShopID": 1
+            }
+        ]
+    },
+    "message": "OK"
+}
+
+
 系统接口列表(请求数据格式均为json)
     新增/删除角色：
         url : /api/manage/editrole

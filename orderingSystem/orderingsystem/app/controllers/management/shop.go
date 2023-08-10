@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"orderingsystem/app/common/request"
 	"orderingsystem/app/common/response"
+	"orderingsystem/app/models"
 	"orderingsystem/app/services"
 	"orderingsystem/global"
 	"path"
@@ -24,18 +25,40 @@ func CreateEditShop(c *gin.Context) {
 		return
 	} else {
 		method := c.Request.Method
-		if user, err := services.ShopServices.CreateEditShop(&form, method); err != nil {
+		if shop, err := services.ShopServices.CreateEditShop(&form, method); err != nil {
 			response.BusinessFail(c, err.Error())
 			return
 		} else {
-			response.Success(c, user)
+			response.Success(c, shop)
 		}
 		return
 	}
 }
 
-func GetCategoryList(c *gin.Context) {
-
+func GetShopInfo(c *gin.Context) {
+	shopID := c.Query("shop")
+	if shopID == "" {
+		response.BusinessFail(c, "参数错误")
+		return
+	}
+	var shop models.Shop
+	if err := global.App.DB.Preload("Catagories").Preload("Tables").First(&shop, shopID).Error; err != nil {
+		response.BusinessFail(c, "获取店铺信息失败")
+		return
+	}
+	categories := shop.Catagories
+	for index, item := range categories {
+		var category models.Catagory
+		global.App.DB.Preload("Cuisines").First(&category, item.ID.ID)
+		var Cuisine models.Cuisine
+		for cindex, citem := range category.Cuisines {
+			global.App.DB.Preload("Images").First(&Cuisine, citem.ID.ID)
+			category.Cuisines[cindex] = Cuisine
+		}
+		shop.Catagories[index] = category
+	}
+	response.Success(c, shop)
+	return
 }
 
 // 菜品分类相关操作

@@ -12,57 +12,45 @@ type shopServices struct {
 
 var ShopServices = new(shopServices)
 
-func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, method string) (user models.User, err error) {
-	var shop models.Shop
-	if method == "GET" {
-		// 需要店铺ID
-		if parame.Id == 0 {
+func (ShopServices shopServices) CreateEditShop(parame *request.CreateEditShop, method string) (shop models.Shop, err error) {
+	var user models.User
+	if parame.Option == "create" {
+		// 必须有userid
+		if parame.UserId == 0 {
 			err = errors.New("请求参数有误！")
 			return
 		}
+		shop = models.Shop{UserID: parame.UserId, Name: parame.Name, Address: parame.Address}
+		result := global.App.DB.Create(&shop)
+		err := global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
+		if result.Error != nil || err != nil {
+			err = errors.New("创建失败")
+		}
+
+	} else if parame.Option == "edit" {
+		// 必须有shopid
 		err = global.App.DB.First(&shop, parame.Id).Error
 		if err != nil {
-			err = errors.New("店铺不存在，请首先新建店铺")
+			err = errors.New("店铺不存在")
+			return
 		}
-	} else if method == "POST" {
-		if parame.Option == "create" {
-			// 必须有userid
-			if parame.UserId == 0 {
-				err = errors.New("请求参数有误！")
-				return
-			}
-			shop = models.Shop{UserID: parame.UserId, Name: parame.Name, Address: parame.Address}
-			result := global.App.DB.Create(&shop)
-			err := global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
-			if result.Error != nil || err != nil {
-				err = errors.New("创建失败")
-			}
-
-		} else if parame.Option == "edit" {
-			// 必须有shopid
-			err = global.App.DB.First(&shop, parame.Id).Error
-			if err != nil {
-				err = errors.New("店铺不存在")
-				return
-			}
-			shop.Address = parame.Address
-			shop.Name = parame.Name
-			if err = global.App.DB.Save(&shop).Error; err != nil {
-				err = errors.New("店铺更新失败")
-				return
-			}
-
-		} else if parame.Option == "delete" {
-			if err = global.App.DB.First(&shop, parame.Id).Error; err != nil {
-				err = errors.New("店铺不存在")
-				return
-			}
-			global.App.DB.Delete(&shop, parame.Id)
-		} else {
-			err = errors.New("请求参数有误！")
+		shop.Address = parame.Address
+		shop.Name = parame.Name
+		if err = global.App.DB.Save(&shop).Error; err != nil {
+			err = errors.New("店铺更新失败")
+			return
 		}
-		err = global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
+
+	} else if parame.Option == "delete" {
+		if err = global.App.DB.First(&shop, parame.Id).Error; err != nil {
+			err = errors.New("店铺不存在")
+			return
+		}
+		global.App.DB.Delete(&shop, parame.Id)
+	} else {
+		err = errors.New("请求参数有误！")
 	}
+	err = global.App.DB.Preload("Shops").Preload("Roles").First(&user, parame.UserId).Error
 	return
 }
 

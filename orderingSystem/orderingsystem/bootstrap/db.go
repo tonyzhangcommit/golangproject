@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"fmt"
 	"orderingsystem/app/models"
 	"orderingsystem/global"
 	"os"
@@ -57,6 +58,7 @@ func initMySqlTables(db *gorm.DB) {
 		&models.User{}, &models.Role{}, &models.Permission{}, &models.Shop{}, &models.Table{}, &models.Image{}, &models.Catagory{}, &models.Cuisine{}, &models.Coupon{}, &models.Order{},
 	)
 	if err != nil {
+		fmt.Println("migrate table failed")
 		global.App.Log.Error("migrate table failed", zap.Any("err", err))
 		os.Exit(0)
 	}
