@@ -1,0 +1,280 @@
+
+
+[31m2023/07/23 20:01:59 [Recovery] 2023/07/23 - 20:01:59 panic recovered:
+POST /api/manage/editrole HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 50
+Content-Type: application/json
+Postman-Token: 258248d9-9c77-405f-b171-dcfca04ab864
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x5ac6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x5ac6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/services/user.go:144 (0xcc066b)
+	userServices.CreateRole: fmt.Print(err.Error())
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/controllers/management/user.go:127 (0xcc3688)
+	CreateRole: if err, role := services.UserServices.CreateRole(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xcac981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xcac96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xcac981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xcac96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xcaba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xcaba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xcaab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xcaa7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xcaa2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x99f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x99a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x5c7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/07/23 21:55:29 [Recovery] 2023/07/23 - 21:55:29 panic recovered:
+POST /api/manage/createuser HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 115
+Content-Type: application/json
+Postman-Token: ad3ee9ce-c576-4c7a-9f8b-90b965e5827d
+User-Agent: PostmanRuntime/7.32.3
+
+
+interface conversion: jwt.Claims is *services.CustomClaims, not services.CustomClaims
+C:/Program Files/Go/src/runtime/iface.go:262 (0xe4b2db)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+C:/Program Files/Go/src/runtime/iface.go:272 (0xe4b28f)
+	panicdottypeI: panicdottypeE(t, want, iface)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/middleware/jwt.go:29 (0x15a2276)
+	ValidJWT: claims = token.Claims.(services.CustomClaims)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/middleware/jwt.go:43 (0x15a243e)
+	JWTAuth.func1: token, claims, err := ValidJWT(tokenStr)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x158c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x158c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x158c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x158c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x158ba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x158ba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x158ab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x158a7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x158a2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x127f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x127a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xea7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/07/23 22:16:41 [Recovery] 2023/07/23 - 22:16:41 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 0
+Postman-Token: bbefc497-d025-46d1-9015-a84c4a0d0be5
+User-Agent: PostmanRuntime/7.32.3
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x28b1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/controllers/management/user.go:58 (0x9e2f9a)
+	LoginOut: err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9cc981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9cc96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9cc981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9cc96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9cba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x9cba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9cab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x9ca7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x9ca2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x6bf40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x6ba626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x2e7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/07/23 22:23:10 [Recovery] 2023/07/23 - 22:23:10 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 0
+Postman-Token: 0c9652ea-e70a-4b94-a9fa-21e95429ccbc
+User-Agent: PostmanRuntime/7.32.3
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x93b1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/controllers/management/user.go:60 (0x1093066)
+	LoginOut: err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x107c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x107c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x107c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x107c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x107ba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x107ba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x107ab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x107a7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x107a2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xd6f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xd6a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x997320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/07/23 22:25:29 [Recovery] 2023/07/23 - 22:25:29 panic recovered:
+POST /api/manage/getuserinfo HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 302
+Content-Type: application/json
+Postman-Token: f43f5e6e-cb4f-4f0b-ab3a-0423dc04b241
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x23c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x23c6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/middleware/jwt.go:46 (0x952435)
+	JWTAuth.func1: response.TokenFail(c, err.Error())
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x93c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x93c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93ba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x93ba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93ab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x93a7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x93a2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x62f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x62a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x257320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/07/23 22:25:38 [Recovery] 2023/07/23 - 22:25:38 panic recovered:
+POST /api/manage/getuserinfo HTTP/1.1
+Host: localhost:8088
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: *
+Connection: keep-alive
+Content-Length: 302
+Content-Type: application/json
+Postman-Token: 41042e35-7e75-4c43-9f57-cd50a087f957
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x23c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x23c6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/orderingsystem/app/middleware/jwt.go:46 (0x952435)
+	JWTAuth.func1: response.TokenFail(c, err.Error())
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x93c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93c981)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x93c96c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93ba86)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x93ba69)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x93ab50)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x93a7b8)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x93a2fc)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x62f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x62a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x257320)
+	goexit: BYTE	$0x90	// NOP
+[0m

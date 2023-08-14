@@ -28,14 +28,16 @@ router.beforeEach(async(to, from, next) => {
     } else {
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {
+        console.log(hasGetUserInfo)
         next()
       } else {
         try {
+          const data = await store.dispatch('user/getInfo')
           // get user info
-          await store.dispatch('user/getInfo')
-          // var roles = ['shopkeeper']
-          var roles = ['manager']
+          var roles = []
+          roles = data.data.Roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+          console.log(accessRoutes)
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch (error) {

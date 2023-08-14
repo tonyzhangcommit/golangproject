@@ -12,6 +12,8 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	router.POST("/login", management.Login)
 	router.POST("/logout", management.LoginOut)
 	router.GET("/getshopinfo", management.GetShopInfo) // 店铺信息
+	router.POST("/getuserinfo", management.GetUserInfo)
+
 	//  小程序相关接口，中间件对访问次数做限制
 	miniAppApi := router.Group("miniapp/")
 	// 小程序
@@ -26,7 +28,6 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 商户接口
 	// 创建店铺, 生成桌号二维码，菜品编辑
 	{
-		shopApi.POST("/getuserinfo", management.GetUserInfo)
 		shopApi.POST("/createditshop", management.CreateEditShop)          // 新增或修改店铺信息
 		shopApi.POST("/createditcategory", management.CreatEditCategory)   // 新增或修改菜品分类信息
 		shopApi.POST("/upload", management.UploadImages)                   // 上传图片

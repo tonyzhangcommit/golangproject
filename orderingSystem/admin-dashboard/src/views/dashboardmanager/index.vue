@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }} 管理员</div>
+    <div class="dashboard-text">欢迎您，尊敬的{{ name }} 管理员</div>
   </div>
 </template>
 
