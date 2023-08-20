@@ -10,8 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
-//  主要包含每个请求中的调用逻辑，是gin中的handler
+// 主要包含每个请求中的调用逻辑，是gin中的handler
 func Test(c *gin.Context) {
 	var form request.CreateRole
 	if err := c.ShouldBindJSON(&form); err != nil {
@@ -77,6 +76,15 @@ func Createuser(c *gin.Context) {
 }
 
 func GetUserInfo(c *gin.Context) {
+	userid := c.DefaultQuery("id", "0")
+	if err, users := services.UserServices.GetUserInfoID(userid); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, users)
+	}
+}
+
+func GetUserInfoByJwt(c *gin.Context) {
 	var form request.GetUserInfo
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
@@ -99,14 +107,29 @@ func GetUserInfo(c *gin.Context) {
 	}
 }
 
-// 删除用户并清除关联关系
-func Edituser(c *gin.Context) {
+// 更改管理员密码
+func ChangePwd(c *gin.Context) {
+	var form request.ChangePwd
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
+	}
+	if err := services.UserServices.ChangePwd(&form); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, "操作成功")
+	}
+	return
+}
+
+// 删除管理员 并清除关联关系
+func DeleteUser(c *gin.Context) {
 	var form request.Deleteuser
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
 		return
 	}
-	if err := services.UserServices.Edituser(&form); err != nil {
+	if err := services.UserServices.DeleteUser(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 		return
 	} else {
@@ -145,15 +168,14 @@ func CreatePermission(c *gin.Context) {
 	return
 }
 
-func EditRolePermission(c *gin.Context) {
+func EditUserPermission(c *gin.Context) {
 	// 不同请求方式对应不同的处理方式
-	var form request.EditRolePermission
+	var form request.EditUserPermission
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
 		return
 	} else {
-		method := c.Request.Method
-		if err, role := services.UserServices.EditRolePermission(&form, method); err != nil {
+		if err, role := services.UserServices.EditUserPermission(&form); err != nil {
 			response.BusinessFail(c, err.Error())
 			return
 		} else {

@@ -4,30 +4,43 @@ package request
 // common/request/user  中存放涉及用户请求中除实际逻辑处理中的所有逻辑
 
 type Resister struct {
-	Name     string `form:"name" json:"name" binding:"required"`
-	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
-	Password string `form:"password" json:"password" binding:"required"`
-	Role     string `form:"role" json:"role"`
+	Name      string `form:"name" json:"name" binding:"required"`
+	Mobile    string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Password  string `form:"password" json:"password" binding:"required"`
+	Role      string `form:"role" json:"role" binding:"required"`
+	ManagerID uint   `form:"managerid" json:"managerid" binding:"required"`
 }
 
 func (register Resister) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required":     "用户名称不能为空",
+		"name:required":      "用户名称不能为空",
+		"mobile:required":    "手机号码不能为空",
+		"mobile:mobile":      "手机号码格式错误",
+		"password:required":  "用户密码不能为空",
+		"role:required":      "角色不能为空",
+		"managerid:required": "请求ID不能为空",
+	}
+}
+
+type ChangePwd struct {
+	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Password string `form:"password" json:"password" binding:"required"`
+}
+
+func (changepwd ChangePwd) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
 		"mobile:required":   "手机号码不能为空",
 		"mobile:mobile":     "手机号码格式错误",
-		"password:required": "用户密码不能为空",
-		"role:required":     "角色不能为空",
+		"password:required": "密码不能为空",
 	}
 }
 
 type Deleteuser struct {
 	Mobile string `form:"mobile" json:"mobile" binding:"required,mobile"`
-	Option string `form:"option" json:"option" binding:"required"`
 }
 
 func (deleteuser Deleteuser) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"option:required": "操作不能为空",
 		"mobile:required": "手机号码不能为空",
 		"mobile:mobile":   "手机号码格式错误",
 	}
@@ -86,14 +99,16 @@ func (createPermission CreatePermission) Getmessage() ValidatorMessages {
 }
 
 // 编辑角色权限信息，CRUD,针对不同的请求方式，对权限进行更改type CreatePermission struct {
-type EditRolePermission struct {
-	Rolename       string `json:"rolename" binding:"required"`
+type EditUserPermission struct {
+	UserID         uint   `json:"userid" binding:"required"`
 	Permissionname string `json:"permissionname" binding:"required"`
+	Option         string `json:"option" binding:"required"`
 }
 
-func (editRolePermission EditRolePermission) Getmessage() ValidatorMessages {
+func (editRolePermission EditUserPermission) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"rolename:required":       "角色名不能为空",
+		"userid:required":         "用户ID不能为空",
 		"permissionname:required": "权限名不能为空",
+		"option:required":         "操作类型不能为空",
 	}
 }

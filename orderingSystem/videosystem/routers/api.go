@@ -21,21 +21,24 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 管理员接口
 	manageApi := router.Group("/manage")
 	{
-		manageApi.POST("/getuserinfo", management.GetUserInfo)
+		manageApi.GET("/users", management.GetUserInfo)       // 获取当前代理下用户（列表）
+		manageApi.POST("/users/edit", management.GetUserInfo) // 编辑用户
+		
+
 	}
 
 	// 超管接口
 	// manageApi := router.Group("manage/").Use(middleware.JWTAuth("manager"))
 	superAdminApi := router.Group("superadmin/")
 	{
-		superAdminApi.POST("/getuserinfo", management.GetUserInfo)
-		superAdminApi.POST("/createuser", management.Createuser)
-		superAdminApi.POST("/edituser", management.Edituser)
-		superAdminApi.GET("/getuserlist") // 代理列表
-		superAdminApi.POST("/editrole", management.CreateRole)
-		superAdminApi.POST("/editper", management.CreatePermission)
-		superAdminApi.Handle("GET", "/editroleper", management.EditRolePermission)
-		superAdminApi.Handle("POST", "/editroleper", management.EditRolePermission)
-		superAdminApi.Handle("DELETE", "/editroleper", management.EditRolePermission)
+		superAdminApi.GET("/users", management.GetUserInfo)                       // 根据用户ID获取用户信息,如果id不存在，则返回用户列表
+		superAdminApi.GET("/usersbyjwt", management.GetUserInfo)                  // 根据jwt信息获取用户信息
+		superAdminApi.POST("/users/creatmanager", management.Createuser)          // 创建管理员
+		superAdminApi.POST("/users/changepwd", management.ChangePwd)              // 更改密码
+		superAdminApi.POST("/users/delete", management.DeleteUser)                // 删除管理员
+		superAdminApi.POST("/roles/createdit", management.CreateRole)             // 编辑角色
+		superAdminApi.POST("/permissions/createdit", management.CreatePermission) // 编辑权限
+		superAdminApi.POST("/users/addpremission", management.EditUserPermission) // 管理管理员权限（add or delete）
+		// 下方为管理收益相关信息
 	}
 }
