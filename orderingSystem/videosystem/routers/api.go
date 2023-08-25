@@ -12,6 +12,8 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	router.POST("/login", management.Login)
 	router.POST("/logout", management.LoginOut)
 	router.POST("/getuserinfo", management.GetUserInfo)
+	router.GET("/video/category", management.GetUserInfo) // 获取所有分类
+
 	//  小程序相关接口，中间件对访问次数做限制
 	commonUser := router.Group("commonuser/")
 	{
@@ -21,9 +23,9 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	// 管理员接口
 	manageApi := router.Group("/manage")
 	{
-		manageApi.GET("/users", management.GetUserInfo)       // 获取当前代理下用户（列表）
-		manageApi.POST("/users/edit", management.GetUserInfo) // 编辑用户
-		
+		manageApi.GET("/users", management.GetUserInfo)       // 获取当前代理下会员（列表）
+		manageApi.POST("/users/edit", management.GetUserInfo) // 编辑会员
+		manageApi.POST("/video/edit", management.GetUserInfo) // 新建视频
 
 	}
 
@@ -39,6 +41,10 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 		superAdminApi.POST("/roles/createdit", management.CreateRole)             // 编辑角色
 		superAdminApi.POST("/permissions/createdit", management.CreatePermission) // 编辑权限
 		superAdminApi.POST("/users/addpremission", management.EditUserPermission) // 管理管理员权限（add or delete）
+		superAdminApi.POST("/video/category/edit", management.CreateCategory)     // 新建分类
+		superAdminApi.POST("/video/category/delete", management.DeleteCategory)   // 删除分类
+
 		// 下方为管理收益相关信息
+
 	}
 }
