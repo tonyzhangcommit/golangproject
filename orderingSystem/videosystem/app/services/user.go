@@ -85,7 +85,7 @@ func (userServices userServices) GetUserInfoById(userId int64) (err error, user 
 }
 
 // 创建管理员 CreateUser
-func (userServices userServices) CreateUser(params *request.Resister) (err error, user models.User) {
+func (userServices userServices) CreateManageuser(params *request.Resister) (err error, user models.User) {
 	// 首先判断用户角色
 	errT := global.App.DB.First(&user, "telnumber = ?", params.Mobile).Error
 	errN := global.App.DB.First(&user, "name = ?", params.Name).Error
@@ -109,20 +109,51 @@ func (userServices userServices) CreateUser(params *request.Resister) (err error
 			err = errors.New("角色不存在")
 			return
 		}
-		UniqueCode := utils.GenerateRandomString(12)
+		// 推荐码
+		UniqueCode := utils.GenerateRandomString(6)
 		user.IdentificationCode = UniqueCode
 
-		user.ManagerID = params.ManagerID
-		err = global.App.DB.Create(&user).Error
 		role := models.Role{
 			Name: params.Role,
 		}
-		err = global.App.DB.Model(&user).Association("Roles").Append(&role)
-		// 增加关联
-		global.App.DB.Model(&user).Association("UserList").Append(&user)
+		if params.ManagerID == 0 {
+			user.ManagerID = 0
+			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 0")
+			if err = global.App.DB.Create(&user).Error; err != nil {
+				err = errors.New("创建失败")
+				return
+			}
+			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 1")
 
+		} else {
+			user.ManagerID = params.ManagerID
+			err = global.App.DB.Create(&user).Error
+			// 增加关联
+			// global.App.DB.Model(&user).Association("UserList").Append(&user)
+		}
+		err = global.App.DB.Model(&user).Association("Roles").Append(&role)
 	} else {
 		err = errors.New("用户已存在")
+	}
+	return
+}
+
+func (userServices userServices) CreateCommonuser(params *request.CommonRegister) (user models.User, err error) {
+	var manager models.User
+	if err = global.App.DB.Where("identificationcode =?", params.IdentificationCode).First(&manager).Error; err != nil {
+		err = errors.New("推广码不存在")
+	} else {
+		var role models.Role
+		role.Name = "normalusers"
+		user.Telnumber = params.Mobile
+		user.Password = params.Password
+		user.ManagerID = manager.ID.ID
+		user.Name = "游客" + utils.GenerateRandomIntString(4)
+		if err = global.App.DB.Create(&user).Error; err != nil {
+			err = errors.New("创建失败")
+		} else {
+			err = global.App.DB.Model(&user).Association("Roles").Append(&role)
+		}
 	}
 	return
 }

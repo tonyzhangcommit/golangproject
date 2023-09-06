@@ -2,14 +2,15 @@ package request
 
 // 不同请求方式对应不同的功能，这里参数在函数逻辑中进行判断
 type CreateCategory struct {
-	Name  string `form:"name" json:"name" binding:"required"`
-	Intro string `form:"intro" json:"intro" binding:"required"`
+	FirstLevel  string `form:"firstlevel" json:"firstlevel"`
+	SecondLevel string `form:"secondlevel" json:"secondlevel"`
+	Name        string `form:"name" json:"name" binding:"required"`
+	Intro       string `form:"intro" json:"intro"`
 }
 
 func (category CreateCategory) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required":  "分类名称不能为空",
-		"intro:required": "分类信息不能为空",
+		"name:required": "分类名称不能为空",
 	}
 }
 
@@ -23,23 +24,37 @@ func (category DeleteCategory) Getmessage() ValidatorMessages {
 	}
 }
 
-type CreateVideo struct {
-	Name  string  `form:"name" json:"name" binding:"required"`
-	Cover float32 `form:"cover" json:"cover" binding:"required"`
-	Intro float32 `form:"intro" json:"intro" binding:"required"`
-	
+type CreateVideoItem struct {
+	VideoID  uint   `form:"videoid" json:"videoid" binding:"required"`
+	Episodes uint   `form:"episodes" json:"episodes" binding:"required"`
+	Url      string `form:"url" json:"url" binding:"required"`
+	Intro    string `form:"intro" json:"intro"`
 }
 
-func (createvideo CreateVideo) Getmessage() ValidatorMessages {
+func (createvideitem CreateVideoItem) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required":  "剧名不能为空",
-		"cover:required": "封面不能为空",
-		"intro:required": "简介不能为空",
+		"videoid:required":  "剧名不能为空",
+		"episodes:required": "剧集不能为空",
+		"url:required":      "地址不能为空",
 	}
 }
 
-type CreateVideoItem struct {
-	Episodes string  `form:"episodes" json:"episodes"`
-	Url      float32 `form:"url" json:"url"`
-	Intro    float32 `form:"intro" json:"intro"`
+type UploadVideo struct {
+	Name       string   `form:"name" json:"name" binding:"required"`
+	Cover      string   `form:"cover" json:"cover" binding:"required"`
+	Intro      string   `form:"intro" json:"intro"`
+	Categories []string `form:"categories" json:"categories" binding:"required"`
+}
+
+func (createvideo UploadVideo) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"name:required":       "剧名不能为空",
+		"cover:required":      "封面不能为空",
+		"Categories:required": "分类不能为空",
+	}
+}
+
+type Deletevideo struct {
+	VideoID     uint   `form:"videoid" json:"videoid"`
+	VideoItemIDList []uint `form:"videoitemid" json:"videoitemid"`
 }

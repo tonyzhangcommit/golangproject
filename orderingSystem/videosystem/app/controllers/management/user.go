@@ -59,16 +59,29 @@ func LoginOut(c *gin.Context) {
 	response.Success(c, nil)
 }
 
+func CommonRegister(c *gin.Context) {
+	var form request.CommonRegister
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
+	}
+	if user, err := services.UserServices.CreateCommonuser(&form); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, user)
+	}
+}
+
 // 创建用户
 // 根据传参的不同，选择性创建manager 和 shopkeeper
-func Createuser(c *gin.Context) {
+func CreateManageuser(c *gin.Context) {
 	var form request.Resister
 	if err := c.ShouldBindJSON(&form); err != nil {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
 		return
 	}
 
-	if err, user := services.UserServices.CreateUser(&form); err != nil {
+	if err, user := services.UserServices.CreateManageuser(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
 		response.Success(c, user)

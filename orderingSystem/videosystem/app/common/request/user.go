@@ -8,17 +8,16 @@ type Resister struct {
 	Mobile    string `form:"mobile" json:"mobile" binding:"required,mobile"`
 	Password  string `form:"password" json:"password" binding:"required"`
 	Role      string `form:"role" json:"role" binding:"required"`
-	ManagerID uint   `form:"managerid" json:"managerid" binding:"required"`
+	ManagerID uint   `form:"managerid" json:"managerid"`
 }
 
 func (register Resister) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
-		"name:required":      "用户名称不能为空",
-		"mobile:required":    "手机号码不能为空",
-		"mobile:mobile":      "手机号码格式错误",
-		"password:required":  "用户密码不能为空",
-		"role:required":      "角色不能为空",
-		"managerid:required": "请求ID不能为空",
+		"name:required":     "用户名称不能为空",
+		"mobile:required":   "手机号码不能为空",
+		"mobile:mobile":     "手机号码格式错误",
+		"password:required": "用户密码不能为空",
+		"role:required":     "角色不能为空",
 	}
 }
 
@@ -57,6 +56,22 @@ func (login Login) Getmessage() ValidatorMessages {
 		"password:required": "密码不能为空",
 		"mobile:required":   "手机号不能为空",
 		"mobile:mobile":     "手机号格式错误",
+	}
+}
+
+// 普通用户注册
+type CommonRegister struct {
+	Mobile             string `form:"mobile" json:"mobile" binding:"required,mobile"`
+	Password           string `form:"password" json:"password" binding:"required"`
+	IdentificationCode string `form:"identcode" json:"identcode" binding:"required"`
+}
+
+func (commonregister CommonRegister) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"password:required":  "密码不能为空",
+		"mobile:required":    "手机号不能为空",
+		"mobile:mobile":      "手机号格式错误",
+		"identcode:required": "推广码不能为空",
 	}
 }
 

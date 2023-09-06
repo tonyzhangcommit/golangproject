@@ -17,7 +17,8 @@
         }
 用户：
     url
-        /superadmin/users/creatmanager      // 创建管理员
+        /superadmin/users/
+              // 创建管理员
     request parameters
         {
             "name":"superadmin",

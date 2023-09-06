@@ -278,3 +278,529 @@ C:/Program Files/Go/src/net/http/server.go:1991 (0x62a626)
 C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x257320)
 	goexit: BYTE	$0x90	// NOP
 [0m
+
+
+[31m2023/09/02 15:46:00 [Recovery] 2023/09/02 - 15:46:00 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: ddc910b5-59c7-4040-a55d-45705b34a944
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0xd5c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0xd5c6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x12267f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x121d524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x121efbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:19 (0x13e36f5)
+	videoServices.CreateCategory: if err = db.First(&category, "name = ?", params.Name).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0x13e5ccd)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x13d03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x13d03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x13d03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x13d03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x13cf4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x13cf4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x13ce5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x13ce218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x13cdd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x10c30eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x10be306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xd77320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:47:28 [Recovery] 2023/09/02 - 15:47:28 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: 0cd4f711-dbbf-4877-8fa9-b72f07296449
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0xbec6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0xbec6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x10b67f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x10ad524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x10aefbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:21 (0x1273736)
+	videoServices.CreateCategory: if err = db.First(&category, "name = ?", params.Name).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0x1275d2d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x12603e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x12603cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x12603e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x12603cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x125f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x125f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x125e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x125e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x125dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xf530eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xf4e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xc07320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:47:59 [Recovery] 2023/09/02 - 15:47:59 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: c0023abf-07b3-4100-bcef-abb81f195019
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0xbec6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0xbec6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x10b67f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x10ad524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x10aefbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:21 (0x1273736)
+	videoServices.CreateCategory: category.Name = params.Name
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0x1275d2d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x12603e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x12603cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x12603e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x12603cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x125f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x125f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x125e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x125e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x125dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xf530eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xf4e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xc07320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:48:06 [Recovery] 2023/09/02 - 15:48:06 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: 2e77db75-18a9-49ed-8da2-199aca793643
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x5ac6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x5ac6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0xa767f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0xa6d524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0xa6efbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:20 (0xc336f5)
+	videoServices.CreateCategory: if err = db.First(&category, "name = ?", params.Name).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0xc35d2d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xc203e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xc203cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xc203e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xc203cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xc1f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xc1f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xc1e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xc1e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xc1dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x9130eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x90e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x5c7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:49:40 [Recovery] 2023/09/02 - 15:49:40 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: d83b7d0c-18d0-43c0-ac2c-d713a6467e64
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x48c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x48c6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x9567f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x94d524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x94efbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:20 (0xb136f5)
+	videoServices.CreateCategory: if err = db.First(&category, "name = ?", params.Name).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0xb15d2d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb003e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xb003cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb003e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xb003cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xaff4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xaff4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xafe5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xafe218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xafdd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x7f30eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x7ee306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x4a7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:50:26 [Recovery] 2023/09/02 - 15:50:26 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: bf06823b-3a3a-47aa-a5e5-cf85fc266e43
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x4bc6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x4bc6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x9867f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x97d524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x97efbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:21 (0xb4377b)
+	videoServices.CreateCategory: if err = db.First(&category, "name = ?", params.Name).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0xb45d6d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb303e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xb303cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb303e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xb303cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb2f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xb2f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xb2e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xb2e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xb2dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x8230eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x81e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x4d7320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:51:09 [Recovery] 2023/09/02 - 15:51:09 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: 6bfa9456-0c3d-47ee-8129-e66c91d84d33
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x34c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x34c6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:18 (0x80e2a2)
+	(*DB).Create: if db.CreateBatchSize > 0 {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:24 (0x9d37fd)
+	videoServices.CreateCategory: if err = db.Create(&category).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0x9d5d8d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9c03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9c03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9c03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9c03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9bf4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x9bf4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9be5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x9be218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x9bdd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x6b30eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x6ae306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x367320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 15:51:10 [Recovery] 2023/09/02 - 15:51:10 panic recovered:
+POST /api/superadmin/video/category/edit HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 51
+Content-Type: application/json
+Postman-Token: b9e4d7d5-c8d7-47d6-9324-2a5fd020dc4e
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x34c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x34c6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:18 (0x80e2a2)
+	(*DB).Create: if db.CreateBatchSize > 0 {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:24 (0x9d37fd)
+	videoServices.CreateCategory: if err = db.Create(&category).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:22 (0x9d5d8d)
+	CreateCategory: if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9c03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9c03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9c03e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x9c03cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9bf4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x9bf4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x9be5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x9be218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x9bdd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x6b30eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x6ae306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x367320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 16:24:54 [Recovery] 2023/09/02 - 16:24:54 panic recovered:
+GET /api/superadmin/video/category?categoryid=4 HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Postman-Token: a7d27e0e-0c32-4d3f-96b1-61d4447a916d
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x100c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x100c6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x14d67f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:404 (0x14cdd95)
+	(*DB).Preload: tx = db.getInstance()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/video.go:74 (0x1693e56)
+	videoServices.GetCategory: if err = db.Preload("Categorylist").Find(&categories, categoryId).Error; err != nil {
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:31 (0x16961c7)
+	GetCategory: if categories, err := services.VideoServices.GetCategory(userid); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x16803e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x16803cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x16803e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x16803cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x167f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x167f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x167e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x167e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x167dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x13730eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x136e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x1027320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/02 17:06:50 [Recovery] 2023/09/02 - 17:06:50 panic recovered:
+POST /api/superadmin/video/category/delete HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 18
+Content-Type: application/json
+Postman-Token: 04c8dad6-568d-49d3-b9ce-ae85d5c27df6
+User-Agent: PostmanRuntime/7.32.3
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0xefc6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0xefc6c5)
+	sigpanic: panicmem()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/gorm.go:396 (0x13c67f8)
+	(*DB).getInstance: if db.clone > 0 {
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/chainable_api.go:331 (0x13bd524)
+	(*DB).Limit: tx = db.getInstance()
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/finisher_api.go:119 (0x13befbc)
+	(*DB).First: tx = db.Limit(1).Order(clause.OrderByColumn{
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/video.go:46 (0x1586736)
+	DeleteCategory: if err := db.First(&category, form.ID).Error; err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x15703e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x15703cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x15703e1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x15703cc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x156f4e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x156f4c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x156e5b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x156e218)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x156dd5c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x12630eb)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x125e306)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xf17320)
+	goexit: BYTE	$0x90	// NOP
+[0m
