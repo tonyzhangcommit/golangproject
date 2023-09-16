@@ -35,7 +35,7 @@ func JWTAuth(auth string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		tokenStr := c.Request.Header.Get("Authorization")
 		if tokenStr == "" {
-			response.TokenFail(c, "")
+			response.TokenFail(c, "登录已过期，请重新登录")
 			c.Abort()
 			return
 		}
@@ -49,6 +49,20 @@ func JWTAuth(auth string) gin.HandlerFunc {
 		}
 
 		userRoles := claims.Roles
+		userStatus := claims.UserStatus
+		if !userStatus {
+			response.TokenFail(c, "对不起,您已被封禁，请联系管理员")
+			c.Abort()
+			return
+		}
+		if auth == "" {
+			// 普通接口
+			c.Set("id", claims.Id)
+			c.Set("token", token)
+			c.Set("userTel", claims.UserTel)
+			return
+		}
+		// 判断角色
 		is_right := false
 		for _, v := range userRoles {
 			if v == auth {
@@ -82,5 +96,6 @@ func JWTAuth(auth string) gin.HandlerFunc {
 
 		c.Set("id", claims.Id)
 		c.Set("token", token)
+		c.Set("userTel", claims.UserTel)
 	}
 }

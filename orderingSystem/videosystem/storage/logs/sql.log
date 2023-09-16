@@ -1,242 +1,69 @@
-[2023-07-13 22:59:52.224]	Dev.info	orderingsystem/main.go:17	log init success!
-[2023-07-13 23:00:34.466]	Dev.info	orderingsystem/main.go:17	log init success!
-[2023-07-13 23:02:57.529]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-15 18:06:02.848]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-15 18:06:02.988]	Dev.info	bootstrap/router.go:35	start err!
-[2023-07-22 18:11:57.013]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 172.27.221.16:6379: i/o timeout"}
-[2023-07-22 18:12:16.860]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-22 23:05:25.353]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 19:39:27.384]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 19:39:27.394]	Dev.error	bootstrap/db.go:43	mysql connect failed, err:	{"err": "Error 1049 (42000): Unknown database 'orderingsystem'"}
-[2023-07-23 19:40:21.546]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 19:52:24.024]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 19:59:51.481]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:01:55.060]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:02:31.467]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:04:34.751]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:05:42.692]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:06:32.343]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:07:32.035]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:24:13.923]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:52:00.562]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:52:46.953]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 20:58:45.645]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:00:52.134]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:06:45.470]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:09:57.624]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:11:20.830]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:12:00.955]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:13:05.654]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:16:22.052]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:17:30.434]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:18:07.652]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:19:08.334]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:20:55.851]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:36:10.419]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:37:14.763]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:37:52.065]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:39:59.646]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:41:07.262]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:48:13.281]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 21:55:24.983]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:02:51.013]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:03:53.041]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:06:05.849]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:06:45.154]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:07:56.563]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:09:27.681]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:13:15.108]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:23:06.008]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:24:25.143]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:24:53.373]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:28:05.033]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-23 22:28:32.388]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 21:20:46.130]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 21:21:46.483]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 21:41:38.377]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 21:42:52.304]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 22:11:01.223]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 22:11:14.172]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 22:37:36.269]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:05:45.509]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:06:47.564]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:08:32.621]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:11:40.667]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:12:23.578]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-07-31 23:13:10.677]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 22:52:44.268]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:00:06.629]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:05:51.833]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:08:00.009]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:08:00.087]	Dev.error	bootstrap/db.go:60	migrate table failed	{"err": "Error 1830 (HY000): Column 'user_id' cannot be NOT NULL: needed in a foreign key constraint 'fk_users_shops' SET NULL"}
-[2023-08-06 23:16:50.143]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:16:50.209]	Dev.error	bootstrap/db.go:60	migrate table failed	{"err": "Error 1830 (HY000): Column 'user_id' cannot be NOT NULL: needed in a foreign key constraint 'fk_users_shops' SET NULL"}
-[2023-08-06 23:17:49.714]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:19:45.835]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:24:27.539]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:25:52.825]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:26:35.918]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:33:29.734]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:34:17.192]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:35:30.683]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:35:45.713]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:37:26.216]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:39:11.993]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:42:22.720]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:46:27.028]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:53:16.474]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-06 23:58:44.777]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 00:04:38.498]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 00:15:47.034]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 00:18:16.086]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 00:23:51.279]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 00:25:23.878]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 21:37:53.057]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 21:47:52.143]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 21:51:12.239]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 22:02:24.751]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-07 23:29:09.568]	Dev.info	orderingsystem/main.go:14	log init success!
-[2023-08-14 22:12:48.507]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-14 22:13:09.552]	Dev.error	bootstrap/db.go:44	mysql connect failed, err:	{"err": "dial tcp 47.92.220.96:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
-[2023-08-14 22:13:29.686]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 47.92.220.96:6379: i/o timeout"}
-[2023-08-14 22:13:29.700]	Dev.info	bootstrap/router.go:37	start err!
-[2023-08-15 22:13:37.033]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 22:13:58.127]	Dev.error	bootstrap/db.go:44	mysql connect failed, err:	{"err": "dial tcp 47.92.220.96:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
-[2023-08-15 22:14:18.244]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 47.92.220.96:6379: i/o timeout"}
-[2023-08-15 22:52:41.860]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 22:52:41.873]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "invalid field found for struct orderingsystem/app/models.User's field Manager: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
-[2023-08-15 22:54:53.955]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 22:54:53.980]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COMMENT '管理员',PRIMARY KEY (`id`),CONSTRAINT `fk_users_manager` FOREIGN KEY' at line 1"}
-[2023-08-15 23:04:46.760]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:04:46.775]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COMMENT '管理员',PRIMARY KEY (`id`),CONSTRAINT `fk_users_manager` FOREIGN KEY' at line 1"}
-[2023-08-15 23:08:30.245]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:08:30.259]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "invalid field found for struct orderingsystem/app/models.User's field Manager: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
-[2023-08-15 23:09:01.205]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:09:01.214]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "invalid field found for struct orderingsystem/app/models.User's field Manager: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
-[2023-08-15 23:09:33.269]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:09:33.280]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "invalid field found for struct orderingsystem/app/models.User's field Manager: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
-[2023-08-15 23:12:31.779]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:12:31.792]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRIMARY KEY (`id`),CONSTRAINT `fk_users_users` FOREIGN KEY (`manager_id`) REFER' at line 1"}
-[2023-08-15 23:13:17.396]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:13:17.408]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRIMARY KEY (`id`),CONSTRAINT `fk_users_users` FOREIGN KEY (`manager_id`) REFER' at line 1"}
-[2023-08-15 23:15:06.536]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:15:06.551]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRIMARY KEY (`id`),CONSTRAINT `fk_users_son_list` FOREIGN KEY (`manager_id`) RE' at line 1"}
-[2023-08-15 23:18:57.711]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:18:57.726]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRIMARY KEY (`id`),CONSTRAINT `fk_users_son_list` FOREIGN KEY (`id`) REFERENCES' at line 1"}
-[2023-08-15 23:26:13.833]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:27:38.378]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:27:38.418]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COMMENT '用户列表'' at line 1"}
-[2023-08-15 23:28:38.961]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:28:38.974]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COMMENT '用户列表',PRIMARY KEY (`id`),CONSTRAINT `fk_users_user_list` FOREIG' at line 1"}
-[2023-08-15 23:29:03.836]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-15 23:29:43.089]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-17 21:08:43.087]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-18 22:33:32.736]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-18 22:34:59.101]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-18 22:35:57.190]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-18 23:35:13.479]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 00:01:54.517]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 00:03:07.357]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 17:30:10.949]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 18:15:21.867]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 18:34:05.249]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 18:57:34.264]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 19:01:00.154]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 19:02:11.828]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 19:07:33.994]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 19:08:06.542]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 19:12:20.825]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 22:18:40.628]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-19 22:58:03.393]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 20:21:18.077]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 20:21:39.136]	Dev.error	bootstrap/db.go:44	mysql connect failed, err:	{"err": "dial tcp 172.27.221.76:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
-[2023-08-25 20:21:59.260]	Dev.error	bootstrap/redis.go:19	Redis connect ping failed, err:	{"err": "dial tcp 172.27.221.76:6379: i/o timeout"}
-[2023-08-25 20:25:16.470]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 20:25:16.525]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "invalid field found for struct orderingsystem/app/models.Category's field Categorylist: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
-[2023-08-25 20:27:37.463]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 20:27:37.542]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOT NULL COMMENT '子分类',`created_at` datetime NULL,`updated_at` datetime NU' at line 1"}
-[2023-08-25 20:28:22.429]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 20:44:49.965]	Dev.info	videosystem/main.go:14	log init success!
-[2023-08-25 21:53:00.789]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-01 17:38:44.442]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:42:15.144]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:47:25.461]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:48:03.675]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:49:38.211]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:50:24.284]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:51:07.320]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:52:13.262]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 15:55:20.206]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:01:11.951]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:05:18.492]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:24:51.619]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:25:36.415]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:26:17.100]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:27:44.227]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:31:39.409]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:37:22.919]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:41:36.612]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 16:54:23.539]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:00:08.129]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:01:58.772]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:04:25.862]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:07:32.981]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:10:59.547]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:12:07.941]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:13:34.044]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:14:10.139]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:26:12.019]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-02 17:51:05.476]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:00:53.605]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:01:42.153]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:03:32.077]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:03:50.661]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:19:31.595]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:20:08.599]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:28:57.726]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:30:20.317]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:30:45.687]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:31:10.173]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:31:52.977]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:34:25.583]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:43:06.388]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 10:43:25.141]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 11:35:12.628]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 15:40:04.300]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:03:07.286]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:15:07.223]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:24:45.367]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:25:33.831]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:26:12.909]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:27:52.144]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:29:10.972]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:31:42.675]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:33:51.185]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:34:28.979]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:35:30.551]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:40:08.684]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:41:54.758]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:45:35.901]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:46:34.458]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:51:04.548]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:51:52.405]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:54:26.905]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:56:52.989]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:57:35.869]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 16:57:55.576]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:07:57.292]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:16:52.434]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:18:01.025]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:30:32.350]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:44:57.237]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:46:35.716]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 17:58:28.601]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 18:06:14.288]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 18:06:58.179]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-03 18:09:05.184]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:13:57.357]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:22:27.523]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:25:15.393]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:26:21.331]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:27:22.002]	Dev.info	videosystem/main.go:14	log init success!
-[2023-09-06 23:46:35.617]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:32:17.009]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:32:17.024]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "unsupported data type: 0xc000111c40"}
+[2023-09-10 14:33:37.570]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:33:37.584]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "unsupported data type: 0xc00036d0a0"}
+[2023-09-10 14:36:16.238]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:36:16.251]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "unsupported data type: 0xc0004006b0"}
+[2023-09-10 14:36:46.586]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:37:22.023]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:40:29.361]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:54:33.997]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 14:58:00.907]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:03:43.896]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:05:20.227]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:07:59.833]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:09:19.526]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:09:42.732]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:11:32.720]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:12:57.250]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:14:57.370]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:16:09.176]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:16:53.783]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:17:45.811]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:19:07.395]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:27:59.589]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:32:39.738]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:35:53.653]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:46:36.740]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:48:17.109]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:48:40.783]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:52:24.693]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 15:57:04.803]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 16:42:21.853]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 16:43:37.213]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 16:48:06.663]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 16:58:21.555]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:05:38.940]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:26:01.429]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:27:54.225]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:37:09.379]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:37:09.456]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key"}
+[2023-09-10 17:37:27.732]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:40:06.499]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:40:06.581]	Dev.error	bootstrap/db.go:61	migrate table failed	{"err": "Error 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key"}
+[2023-09-10 17:41:06.633]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:45:26.671]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 17:46:48.262]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 18:40:16.306]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:23:37.666]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:25:08.188]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:27:19.121]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:28:45.098]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:29:26.433]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:41:03.267]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:44:25.551]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:50:58.608]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 22:52:14.949]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:29:16.062]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:29:42.207]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:30:47.567]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:34:33.095]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:36:06.876]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:36:40.554]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-10 23:38:50.545]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-11 23:11:30.894]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-11 23:12:21.228]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-11 23:13:41.860]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-14 22:13:07.140]	Dev.info	videosystem/main.go:14	log init success!
+[2023-09-14 22:13:28.191]	Dev.error	bootstrap/db.go:44	mysql connect failed, err:	{"err": "dial tcp 172.27.221.76:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
+[2023-09-14 22:13:57.624]	Dev.info	videosystem/main.go:14	log init success!

@@ -804,3 +804,793 @@ C:/Program Files/Go/src/net/http/server.go:1991 (0x125e306)
 C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xf17320)
 	goexit: BYTE	$0x90	// NOP
 [0m
+
+
+[31m2023/09/10 15:03:55 [Recovery] 2023/09/10 - 15:03:55 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x37c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x37c6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:190 (0xa923f4)
+	userServices.CreateManageuser: fmt.Println(err.Error())
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0xa9760d)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa7c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa7ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa7a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x76f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x76a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x397320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:05:12 [Recovery] 2023/09/10 - 15:05:12 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x37c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x37c6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:190 (0xa923f4)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(&role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0xa9760d)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa7c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa7ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa7a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x76f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x76a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x397320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:09:25 [Recovery] 2023/09/10 - 15:09:25 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+runtime error: invalid memory address or nil pointer dereference
+C:/Program Files/Go/src/runtime/panic.go:260 (0x30c6f5)
+	panicmem: panic(memoryError)
+C:/Program Files/Go/src/runtime/signal_windows.go:255 (0x30c6c5)
+	sigpanic: panicmem()
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:196 (0xa22321)
+	userServices.CreateManageuser: fmt.Println(err.Error())
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0xa2776d)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa0cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa0cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa0cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa0cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa0c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa0c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa0b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa0ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa0a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x6ff40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x6fa626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x327320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:09:47 [Recovery] 2023/09/10 - 15:09:47 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0x9572e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0xe525e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0xe519ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0xe49bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:195 (0x1022398)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x10277ed)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x100c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x100ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x100a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xcff40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xcfa626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x927320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:09:56 [Recovery] 2023/09/10 - 15:09:56 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0x9572e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0xe525e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0xe519ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0xe49bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:195 (0x1022398)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x10277ed)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x100c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x100ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x100a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xcff40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xcfa626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x927320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:10:46 [Recovery] 2023/09/10 - 15:10:46 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0x9572e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0xe525e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0xe519ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0xe49bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:195 (0x1022398)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x10277ed)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x100cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x100c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x100b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x100ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x100a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xcff40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xcfa626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x927320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:11:56 [Recovery] 2023/09/10 - 15:11:56 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0xc572e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0x11525e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0x11519ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0x1149bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:194 (0x13223f9)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x13276cd)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x130cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x130cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x130cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x130cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x130c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x130c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x130b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x130ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x130a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0xfff40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0xffa626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xc27320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:13:09 [Recovery] 2023/09/10 - 15:13:09 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0xf972e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0x14925e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0x14919ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0x1489bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:190 (0x16623f9)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x166770d)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x164cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x164cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x164cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x164cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x164c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x164c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x164b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x164ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x164a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x133f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x133a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0xf67320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:15:03 [Recovery] 2023/09/10 - 15:15:03 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN
+Connection: keep-alive
+Content-Length: 89
+Content-Type: application/json
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) posthub/1.0.0 Chrome/93.0.4577.82 Electron/14.2.5 Safari/537.36
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0x3c72e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0x8c25e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0x8c19ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0x8b9bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:191 (0xa92398)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0xa976ad)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa7cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa7c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa7b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa7ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa7a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x76f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x76a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x397320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/10 15:16:35 [Recovery] 2023/09/10 - 15:16:35 panic recovered:
+POST /api/superadmin/users/creatmanager HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 119
+Content-Type: application/json
+Postman-Token: 15e3193f-c278-40e0-8507-0e90095aacd1
+User-Agent: PostmanRuntime/7.32.3
+
+
+reflect.Value.Addr of unaddressable value
+C:/Program Files/Go/src/reflect/value.go:271 (0x1a72e4)
+	Value.Addr: panic("reflect.Value.Addr of unaddressable value")
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:436 (0x6a25e9)
+	(*Association).saveAssociation.func1: appendToFieldValues(rv.Addr())
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:533 (0x6a19ce)
+	(*Association).saveAssociation: appendToRelations(reflectValue, rv, clear && idx == 0)
+C:/Users/Administrator/go/pkg/mod/gorm.io/gorm@v1.25.2/association.go:68 (0x699bc8)
+	(*Association).Append: association.saveAssociation( /*clear*/ false, values...)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/services/user.go:191 (0x872387)
+	userServices.CreateManageuser: err = global.App.DB.Model(&user).Association("Roles").Append(role)
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:84 (0x8776ad)
+	CreateManageuser: if err, user := services.UserServices.CreateManageuser(&form); err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x85cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x85cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x85cf21)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0x85cf0c)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x85c026)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0x85c009)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0x85b0f0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0x85ad58)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0x85a89c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x54f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x54a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x177320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/14 23:41:20 [Recovery] 2023/09/14 - 23:41:20 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Origin: http://localhost:9528
+Referer: http://localhost:9528/
+Sec-Ch-Ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x2db1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:39 (0xa39606)
+	LoginOut: err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1c0e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa1c0c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1b1b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa1ae18)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa1a95c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x70f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x70a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x337320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/14 23:49:24 [Recovery] 2023/09/14 - 23:49:24 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Origin: http://localhost:9528
+Referer: http://localhost:9528/
+Sec-Ch-Ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x2db1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:39 (0xa39606)
+	LoginOut: if err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1c0e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa1c0c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1b1b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa1ae18)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa1a95c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x70f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x70a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x337320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/16 10:17:30 [Recovery] 2023/09/16 - 10:17:30 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Origin: http://localhost:9528
+Referer: http://localhost:9528/
+Sec-Ch-Ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x2db1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:39 (0xa39606)
+	LoginOut: if err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1c0e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa1c0c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1b1b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa1ae18)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa1a95c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x70f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x70a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x337320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/16 12:04:19 [Recovery] 2023/09/16 - 12:04:19 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Origin: http://localhost:9528
+Referer: http://localhost:9528/
+Sec-Ch-Ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x2db1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:39 (0xa39606)
+	LoginOut: if err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1c0e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa1c0c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1b1b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa1ae18)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa1a95c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x70f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x70a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x337320)
+	goexit: BYTE	$0x90	// NOP
+[0m
+
+
+[31m2023/09/16 12:04:24 [Recovery] 2023/09/16 - 12:04:24 panic recovered:
+POST /api/logout HTTP/1.1
+Host: localhost:9000
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Origin: http://localhost:9528
+Referer: http://localhost:9528/
+Sec-Ch-Ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+
+
+interface conversion: interface {} is nil, not *jwt.Token
+C:/Program Files/Go/src/runtime/iface.go:262 (0x2db1e9)
+	panicdottypeE: panic(&TypeAssertionError{iface, have, want, ""})
+D:/feiyuzhang/goproject/golangproject/orderingSystem/videosystem/app/controllers/management/user.go:39 (0xa39606)
+	LoginOut: if err != nil {
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1cfe1)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102 (0xa1cfcc)
+	CustomRecoveryWithWriter.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1c0e6)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240 (0xa1c0c9)
+	LoggerWithConfig.func1: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 (0xa1b1b0)
+	(*Context).Next: c.handlers[c.index](c)
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 (0xa1ae18)
+	(*Engine).handleHTTPRequest: c.Next()
+C:/Users/Administrator/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 (0xa1a95c)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Program Files/Go/src/net/http/server.go:2947 (0x70f40b)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Program Files/Go/src/net/http/server.go:1991 (0x70a626)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Program Files/Go/src/runtime/asm_amd64.s:1594 (0x337320)
+	goexit: BYTE	$0x90	// NOP
+[0m

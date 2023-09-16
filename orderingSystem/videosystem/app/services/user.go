@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 )
 
 type userServices struct {
@@ -76,6 +77,62 @@ func (userServices userServices) GetUserInfoID(userId string) (err error, users 
 	return
 }
 
+// 管理员获取当前下所有用户
+func (userServices userServices) GetManagerUsers(c *gin.Context, userId string) (err error, users []models.User) {
+	var manager models.User
+	userTel, isExit := c.Get("userTel")
+	if err = global.App.DB.Where("telnumber=?", userTel).First(&manager).Error; err != nil && !isExit {
+		err = errors.New("非法Token")
+		return
+	}
+	if userId == "0" {
+		// 获取当前管理员下所有的用户信息
+		if err = global.App.DB.Where("manager_id = ?", manager.ID.ID).Preload("UserList").Preload("Roles").Find(&users).Error; err != nil {
+			err = errors.New("查询失败")
+		}
+	} else {
+		if userintId, err := strconv.Atoi(userId); err != nil {
+			err = errors.New("参数错误")
+		} else {
+			parameter := []int{userintId}
+			if err = global.App.DB.Where("manager_id = ?", manager.ID.ID).Preload("UserList").Preload("Roles").Preload("Permissions").Find(&users, parameter).Error; err != nil {
+				err = errors.New("查询失败")
+			}
+		}
+	}
+	return
+}
+
+// 管理员对用户开启代理权限
+func (userServices userServices) ChangeProxy(c *gin.Context, params *request.EditProxy) (user models.User, err error) {
+	var manager models.User
+	userTel, isExit := c.Get("userTel")
+	if err = global.App.DB.Where("telnumber=?", userTel).First(&manager).Error; err != nil && !isExit {
+		err = errors.New("非法Token")
+		return
+	}
+	if err = global.App.DB.Where("id=?", params.UserId).First(&user).Error; err != nil {
+		err = errors.New("用户不存在")
+		return
+	}
+	// 更改用户角色
+	if params.Option == "add" {
+		global.App.DB.Model(&user).Association("Roles").Clear()
+		role := models.Role{
+			Name: "manager",
+		}
+		global.App.DB.Model(&user).Association("Roles").Append(&role)
+	} else if params.Option == "delete" {
+		user.Status = false
+		global.App.DB.Model(&user).Association("Roles").Clear()
+		global.App.DB.Save(&user)
+	} else {
+		err = errors.New("参数错误")
+	}
+
+	return
+}
+
 func (userServices userServices) GetUserInfoById(userId int64) (err error, user models.User) {
 	if err = global.App.DB.Preload("Roles").First(&user, userId).Error; err != nil {
 		err = errors.New("用户不存在")
@@ -88,8 +145,7 @@ func (userServices userServices) GetUserInfoById(userId int64) (err error, user 
 func (userServices userServices) CreateManageuser(params *request.Resister) (err error, user models.User) {
 	// 首先判断用户角色
 	errT := global.App.DB.First(&user, "telnumber = ?", params.Mobile).Error
-	errN := global.App.DB.First(&user, "name = ?", params.Name).Error
-	if errT != nil && errN != nil {
+	if errT != nil {
 		user = models.User{
 			Name:      params.Name,
 			Telnumber: params.Mobile,
@@ -97,14 +153,17 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 		}
 		// 获取角色列表
 		var roles []models.Role
+		var role models.Role
 		global.App.DB.Find(&roles)
 		isrightrole := false
 		for _, value := range roles {
 			if value.Name == params.Role {
 				isrightrole = true
+				role = value
 				break
 			}
 		}
+
 		if !isrightrole {
 			err = errors.New("角色不存在")
 			return
@@ -113,9 +172,6 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 		UniqueCode := utils.GenerateRandomString(6)
 		user.IdentificationCode = UniqueCode
 
-		role := models.Role{
-			Name: params.Role,
-		}
 		if params.ManagerID == 0 {
 			user.ManagerID = 0
 			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 0")
@@ -128,8 +184,6 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 		} else {
 			user.ManagerID = params.ManagerID
 			err = global.App.DB.Create(&user).Error
-			// 增加关联
-			// global.App.DB.Model(&user).Association("UserList").Append(&user)
 		}
 		err = global.App.DB.Model(&user).Association("Roles").Append(&role)
 	} else {
@@ -138,17 +192,24 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 	return
 }
 
+// 普通用户注册
 func (userServices userServices) CreateCommonuser(params *request.CommonRegister) (user models.User, err error) {
 	var manager models.User
 	if err = global.App.DB.Where("identificationcode =?", params.IdentificationCode).First(&manager).Error; err != nil {
 		err = errors.New("推广码不存在")
 	} else {
 		var role models.Role
-		role.Name = "normalusers"
+		if err = global.App.DB.Where("name = ?", "normalusers").First(&role).Error; err != nil {
+			return
+		}
 		user.Telnumber = params.Mobile
-		user.Password = params.Password
+		user.Password = utils.BcryptMake([]byte(params.Password))
 		user.ManagerID = manager.ID.ID
-		user.Name = "游客" + utils.GenerateRandomIntString(4)
+		user.Name = params.Name
+		if params.Name == "" {
+			user.Name = "normal" + utils.GenerateRandomIntString(4)
+		}
+
 		if err = global.App.DB.Create(&user).Error; err != nil {
 			err = errors.New("创建失败")
 		} else {
@@ -186,7 +247,7 @@ func (userServices userServices) DeleteUser(params *request.Deleteuser) (err err
 	}
 }
 
-// 创建角色
+// 创建删除角色
 func (userServices userServices) CreateRole(params *request.CreateRole) (err error, role models.Role) {
 	err = global.App.DB.First(&models.Role{}, "name = ?", params.Name).Error
 	if params.Option == "create" {
@@ -246,36 +307,30 @@ func (userServices userServices) EditUserPermission(params *request.EditUserPerm
 	pname := params.Permissionname
 	var permission models.Permission
 	pItem := global.App.DB.First(&permission, "name = ?", pname)
-	rItem := global.App.DB.First(&user, userID)
+	rItem := global.App.DB.Preload("Permissions").Preload("Roles").First(&user, userID)
 	if pItem.Error != nil || rItem.Error != nil {
 		err = errors.New("用户/权限不存在")
 	} else {
-		if err = global.App.DB.Preload("Permissions").First(&user).Error; err != nil {
-			return
+		isHasP := false
+		for _, item := range user.Permissions {
+			if item.Name == pname {
+				isHasP = true
+				break
+			}
+		}
+		if params.Option == "create" {
+			if isHasP {
+				err = errors.New("权限已存在")
+				return
+			}
+			err = global.App.DB.Model(&user).Association("Permissions").Append(&permission)
+		} else if params.Option == "delete" {
+			if !isHasP {
+				return
+			}
+			err = global.App.DB.Model(&user).Association("Permissions").Delete(&permission)
 		} else {
-			isHasP := false
-			for _, item := range user.Permissions {
-				if item.Name == pname {
-					isHasP = true
-					break
-				}
-			}
-			if params.Option == "create" {
-				if isHasP {
-					err = errors.New("权限已存在")
-					return
-				}
-				err = global.App.DB.Model(&user).Association("Permissions").Append(&permission)
-			} else if params.Option == "delete" {
-				if !isHasP {
-					err = errors.New("权限不存在")
-					return
-				}
-				err = global.App.DB.Model(&user).Association("Permissions").Delete(&permission)
-			} else {
-				err = errors.New("请求参数错误！")
-			}
-			return
+			err = errors.New("请求参数错误！")
 		}
 	}
 	return

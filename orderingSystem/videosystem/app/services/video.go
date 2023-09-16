@@ -14,7 +14,6 @@ type videoServices struct {
 }
 
 var VideoServices = new(videoServices)
-var db = global.App.DB
 
 // 创建分类
 func (videoServices videoServices) CreateCategory(params *request.CreateCategory) (category models.Category, err error) {

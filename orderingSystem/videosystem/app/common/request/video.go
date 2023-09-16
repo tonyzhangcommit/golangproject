@@ -55,6 +55,7 @@ func (createvideo UploadVideo) Getmessage() ValidatorMessages {
 }
 
 type Deletevideo struct {
-	VideoID     uint   `form:"videoid" json:"videoid"`
+	VideoID         uint   `form:"videoid" json:"videoid"`
 	VideoItemIDList []uint `form:"videoitemid" json:"videoitemid"`
 }
+

@@ -11,9 +11,11 @@ type User struct {
 	Status             bool         `json:"status" gorm:"column:status;default:true;comment:状态"`
 	Roles              []Role       `gorm:"many2many:user_roles;"`
 	Permissions        []Permission `gorm:"many2many:user_permission;"`
-	IdentificationCode string       `json:"identificationcode" gorm:"unique;column:identificationcode;comment:推广码"`
+	IdentificationCode string       `json:"identificationcode" gorm:"unique;column:identificationcode;default:NULL;comment:推广码"`
 	ManagerID          uint
-	UserList           []User `json:"userlist" gorm:"foreignkey:ManagerID"`
+	UserList           []User       `json:"userlist" gorm:"foreignkey:ManagerID"`
+	OrderList          []Order      `json:"orderlist"`
+	InComeList         []InComeInfo `json:"inComelist"`
 	Timestamps
 }
 
@@ -24,7 +26,7 @@ func (user User) GetUid() string {
 // 角色表
 type Role struct {
 	ID
-	Name string `json:"name" gorm:"not null;column:name;comment:角色名"`
+	Name string `json:"name" gorm:"not null;unique;column:name;comment:角色名"`
 	Timestamps
 }
 

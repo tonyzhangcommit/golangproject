@@ -115,3 +115,5 @@ func DeleteVideo(c *gin.Context) {
 		response.Success(c, "删除成功")
 	}
 }
+
+

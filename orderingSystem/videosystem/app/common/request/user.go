@@ -61,6 +61,7 @@ func (login Login) Getmessage() ValidatorMessages {
 
 // 普通用户注册
 type CommonRegister struct {
+	Name               string `form:"name" json:"name"`
 	Mobile             string `form:"mobile" json:"mobile" binding:"required,mobile"`
 	Password           string `form:"password" json:"password" binding:"required"`
 	IdentificationCode string `form:"identcode" json:"identcode" binding:"required"`
@@ -85,6 +86,12 @@ func (getuserinfo GetUserInfo) Getmessage() ValidatorMessages {
 	return ValidatorMessages{
 		"jwt:required": "参数不能为空",
 	}
+}
+
+// 管理员更改用户状态
+type EditProxy struct {
+	UserId uint   `form:"userid" json:"userid" binding:"required"`
+	Option string `form:"option" json:"option"`
 }
 
 //  创建角色

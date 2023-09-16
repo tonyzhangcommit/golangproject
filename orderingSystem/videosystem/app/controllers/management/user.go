@@ -10,21 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 主要包含每个请求中的调用逻辑，是gin中的handler
-func Test(c *gin.Context) {
-	var form request.CreateRole
-	if err := c.ShouldBindJSON(&form); err != nil {
-		response.ValidateFail(c, request.GetErrorMsg(form, err))
-		fmt.Println(err)
-	}
-
-	if err, role := services.UserServices.CreateRole(&form); err != nil {
-		response.BusinessFail(c, err.Error())
-	} else {
-		response.Success(c, role)
-	}
-}
-
 // 登录
 // 这里登录只返回生成的JWT信息，然后根据jwt信息获取用户详情
 func Login(c *gin.Context) {
@@ -49,8 +34,7 @@ func Login(c *gin.Context) {
 
 // 登出接口
 func LoginOut(c *gin.Context) {
-	fmt.Println(c.Keys["token"])
-	fmt.Println("asdfasdfasdf")
+	
 	err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
 	if err != nil {
 		response.BusinessFail(c, "登出失败")
@@ -88,12 +72,37 @@ func CreateManageuser(c *gin.Context) {
 	}
 }
 
+// 超管接口
 func GetUserInfo(c *gin.Context) {
 	userid := c.DefaultQuery("id", "0")
 	if err, users := services.UserServices.GetUserInfoID(userid); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
 		response.Success(c, users)
+	}
+}
+
+// 代理接口
+func GetManagerUsers(c *gin.Context) {
+	userid := c.DefaultQuery("id", "0")
+	if err, users := services.UserServices.GetManagerUsers(c, userid); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, users)
+	}
+}
+
+// 管理员编辑子代理
+func ChangeProxy(c *gin.Context) {
+	var form request.EditProxy
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
+	}
+	if user, err := services.UserServices.ChangeProxy(c, &form); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, user)
 	}
 }
 
@@ -116,6 +125,7 @@ func GetUserInfoByJwt(c *gin.Context) {
 		for _, item := range user.Roles {
 			roles = append(roles, item.Name)
 		}
+		fmt.Println(responseuser{user.ID.ID, user.Name, roles})
 		response.Success(c, responseuser{user.ID.ID, user.Name, roles})
 	}
 }

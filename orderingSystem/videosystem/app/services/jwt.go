@@ -52,7 +52,8 @@ func (jwtService *jwtService) CreateToken(GuardName string, user models.User) (t
 			Roles:      userRole,       // 用户角色
 			UserStatus: user.Status,    // 用户状态
 			UserName:   user.Name,      // 用户名
-			UserTel:    user.Telnumber, // 用户密码
+			UserTel:    user.Telnumber, // 用户电话
+			
 			StandardClaims: jwt.StandardClaims{
 				ExpiresAt: time.Now().Unix() + global.App.Config.Jwt.JwtTtl,
 				Id:        user.GetUid(),
@@ -61,6 +62,7 @@ func (jwtService *jwtService) CreateToken(GuardName string, user models.User) (t
 			},
 		},
 	)
+	fmt.Println(token)
 	tokenStr, err := token.SignedString([]byte(global.App.Config.Jwt.Secret))
 
 	tokenData = TokenOutPut{
