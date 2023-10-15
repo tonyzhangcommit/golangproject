@@ -18,7 +18,7 @@ export function getInfo(data) {
 
 export function logout() {
   return request({
-    url: 'common/logout/',
+    url: '/common/logout',
     method: 'post'
   })
 }

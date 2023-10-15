@@ -3,7 +3,7 @@
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :default-openeds="['/shopmanage','/nested']"
+        :default-openeds="['/videomanage']"
         :default-active="activeMenu"
         :collapse="isCollapse"
         :background-color="variables.menuBg"

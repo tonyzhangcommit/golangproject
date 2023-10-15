@@ -30,6 +30,7 @@ router.beforeEach(async(to, from, next) => {
           roles = data.data.Roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
           router.addRoutes(accessRoutes)
+
           next({ ...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login

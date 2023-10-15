@@ -14,13 +14,18 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	router.POST("/register", management.CommonRegister)         // 普通注册
 	router.POST("/usersinfobyjwt", management.GetUserInfoByJwt) // 根据jwt信息获取用户信息
 	router.POST("/getuserinfo", management.GetUserInfo)
+	router.GET("/getroles", management.GetRoles)
 	router.GET("/video/category", management.GetCategory) // 查询分类
 	router.GET("/video", management.GetVideo)             // 查询视频
 	// 订单相关
-	router.GET("/ordercategory", management.GetCategoryOrder) // 获取订单类型(已完成)
-	router.GET("/paycategory", management.GetCategoryPay)     // 获取支付类型(已完成)
-	router.POST("/createorder", management.CreateOrder)       // 下单(待测试)
-	router.GET("/test", management.TestUser)                  // 测试接口
+	router.GET("/ordercategory", management.GetCategoryOrder)       // 获取订单类型(已完成)
+	router.GET("/paycategory", management.GetCategoryPay)           // 获取支付类型(已完成)
+	router.POST("/createorder", management.CreateOrder)             // 下单(已完成)
+	router.POST("/changeorderstatus", management.Changeorderstatus) // 未登录支付后更改订单信息(已完成)
+	router.POST("/testpay", management.TempPay)                     // 模拟支付(已完成)
+	router.GET("/orders", management.GetOrders)                     // 获取订单（普通用户，管理员，超管）(已完成)
+	router.GET("/incomes", management.GetIncomes)                   // 获取收益信息（管理员，超管）(待完成)
+	router.POST("/test", management.Changeorderstatus)              // 测试接口
 
 	//  用户调用相关接口，中间件对访问次数做限制
 	commonUser := router.Group("common/").Use(middleware.JWTAuth(""))
@@ -46,6 +51,7 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 	{
 		superAdminApi.GET("/users", management.GetUserInfo)                       // 根据用户ID获取用户信息,如果id不存在，则返回用户列表(已完成)
 		superAdminApi.POST("/users/creatmanager", management.CreateManageuser)    // 创建管理员(已完成)
+		superAdminApi.POST("/users/edituser", management.EditUserStatus)          // 封禁/解封 用户
 		superAdminApi.POST("/users/changepwd", management.ChangePwd)              // 更改密码(已完成)
 		superAdminApi.POST("/users/delete", management.DeleteUser)                // 删除管理员(已完成)
 		superAdminApi.POST("/roles/createdit", management.CreateRole)             // 编辑角色(已完成)
@@ -55,6 +61,7 @@ func SetApiGroupRouters(router *gin.RouterGroup) {
 		superAdminApi.POST("/video/category/delete", management.DeleteCategory)   // 删除分类(已完成)
 		superAdminApi.POST("/video/create", management.UploadVideo)               // 新建视频(已完成)
 		superAdminApi.POST("/video/createinfo", management.UploadVideoInfo)       // 新建剧集(已完成)
+		superAdminApi.POST("/video/editinfo", management.UploadVideoInfo)         // 新建剧集(已完成)
 		superAdminApi.POST("/video/delete", management.DeleteVideo)               // 删除视频或者剧集(已完成)
 		superAdminApi.Handle("GET", "/order/product", management.ProductsList)    // 查询当前所有产品(已完成)
 		superAdminApi.Handle("POST", "/order/product", management.Products)       // 编辑（创建或者编辑）产品(已完成)

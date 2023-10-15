@@ -1,7 +1,6 @@
 package management
 
 import (
-	"fmt"
 	"orderingsystem/app/common/request"
 	"orderingsystem/app/common/response"
 	"orderingsystem/app/services"
@@ -34,7 +33,6 @@ func Login(c *gin.Context) {
 
 // 登出接口
 func LoginOut(c *gin.Context) {
-	
 	err := services.JwtService.JoinBlackList(c.Keys["token"].(*jwt.Token))
 	if err != nil {
 		response.BusinessFail(c, "登出失败")
@@ -64,7 +62,6 @@ func CreateManageuser(c *gin.Context) {
 		response.ValidateFail(c, request.GetErrorMsg(form, err))
 		return
 	}
-
 	if err, user := services.UserServices.CreateManageuser(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
@@ -72,13 +69,43 @@ func CreateManageuser(c *gin.Context) {
 	}
 }
 
-// 超管接口
-func GetUserInfo(c *gin.Context) {
-	userid := c.DefaultQuery("id", "0")
-	if err, users := services.UserServices.GetUserInfoID(userid); err != nil {
+// 封禁/解封用户
+func EditUserStatus(c *gin.Context) {
+	var form request.EditUser
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.ValidateFail(c, request.GetErrorMsg(form, err))
+		return
+	}
+	if err := services.UserServices.EditUserStatus(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
-		response.Success(c, users)
+		response.Success(c, "操作成功")
+	}
+}
+
+// 超管接口
+func GetUserInfo(c *gin.Context) {
+	if err, users, count := services.UserServices.GetUserInfoID(c); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		type userinfo struct {
+			Userlist []services.UserInfo `json:"userlist"`
+			Count    int                 `json:"count"`
+		}
+		var userlist userinfo
+		userlist.Userlist = users
+		userlist.Count = count
+		response.Success(c, userlist)
+	}
+}
+
+// 通用接口，获取所有角色信息
+func GetRoles(c *gin.Context) {
+	userid := c.DefaultQuery("id", "0")
+	if err, roles := services.UserServices.GetRoles(userid); err != nil {
+		response.BusinessFail(c, err.Error())
+	} else {
+		response.Success(c, roles)
 	}
 }
 
@@ -125,7 +152,6 @@ func GetUserInfoByJwt(c *gin.Context) {
 		for _, item := range user.Roles {
 			roles = append(roles, item.Name)
 		}
-		fmt.Println(responseuser{user.ID.ID, user.Name, roles})
 		response.Success(c, responseuser{user.ID.ID, user.Name, roles})
 	}
 }

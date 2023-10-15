@@ -1,11 +1,14 @@
 package management
 
 import (
+	"errors"
+	"fmt"
 	"orderingsystem/app/common/request"
 	"orderingsystem/app/common/response"
 	"orderingsystem/app/models"
 	"orderingsystem/app/services"
 	"orderingsystem/global"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -18,19 +21,19 @@ func CreateCategory(c *gin.Context) {
 		return
 	}
 
-	if category, err := services.VideoServices.CreateCategory(&form); err != nil {
+	if err := services.VideoServices.CreateCategory(&form); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
-		response.Success(c, category)
+		response.Success(c, "创建成功")
 	}
 }
 
 func GetCategory(c *gin.Context) {
 	categoryid := c.DefaultQuery("categoryid", "0")
-	categoryT := c.DefaultQuery("categorytype", "")
-	if categories, err := services.VideoServices.GetCategory(categoryid, categoryT); err != nil {
+	if categories, err := services.VideoServices.GetCategory(categoryid); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
+		fmt.Println(categories)
 		response.Success(c, categories)
 	}
 }
@@ -40,11 +43,34 @@ func GetCategory(c *gin.Context) {
 func GetVideo(c *gin.Context) {
 	videoname := c.DefaultQuery("videoname", "")
 	category := c.DefaultQuery("category", "")
-	if videos, err := services.VideoServices.GetVideo(videoname, category); err != nil {
+	page := c.DefaultQuery("page", "")
+	page_size := c.DefaultQuery("page_size", "")
+	var pageN int
+	var page_sizeN int
+	var err error
+	if pageN, err = strconv.Atoi(page); err != nil {
+		err = errors.New("参数错误")
+		response.BusinessFail(c, err.Error())
+		return
+	}
+	if page_sizeN, err = strconv.Atoi(page_size); err != nil {
+		err = errors.New("参数错误")
+		response.BusinessFail(c, err.Error())
+		return
+	}
+	if videos, count, err := services.VideoServices.GetVideo(videoname, category, pageN, page_sizeN); err != nil {
 		response.BusinessFail(c, err.Error())
 	} else {
-		response.Success(c, videos)
+		type VideoInfo struct {
+			Videolist []models.Video `json:"videos"`
+			Count     int            `json:"count"`
+		}
+		var videinfo VideoInfo
+		videinfo.Videolist = videos
+		videinfo.Count = count
+		response.Success(c, videinfo)
 	}
+
 }
 
 func deleteCategoryAndChildren(db *gorm.DB, category *models.Category) {
@@ -115,5 +141,3 @@ func DeleteVideo(c *gin.Context) {
 		response.Success(c, "删除成功")
 	}
 }
-
-

@@ -6,6 +6,7 @@ import (
 	"orderingsystem/app/models"
 	"orderingsystem/global"
 	"orderingsystem/utils"
+	"reflect"
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
@@ -56,23 +57,176 @@ func (userServices userServices) GetUserInfo(params *request.GetUserInfo) (err e
 		err = errors.New("用户不存在")
 		return
 	}
+	if !user.Status {
+		err = errors.New("用户已封禁")
+		return
+	}
 	return
 }
 
-func (userServices userServices) GetUserInfoID(userId string) (err error, users []models.User) {
-	if userId == "0" {
-		if err = global.App.DB.Preload("UserList").Preload("Roles").Preload("Permissions").Find(&users).Error; err != nil {
-			err = errors.New("查询失败")
+// if userName != "" {
+// 	query = query.Where("name = ?", userName)
+// }
+// if veriCode != "" {
+// 	query = query.Where("identificationcode = ?", veriCode)
+// }
+
+func getAllSubUsers(userID uint) []models.User {
+	var users []models.User
+	var user models.User
+	global.App.DB.Preload("UserList").Preload("Roles").First(&user, userID)
+	users = append(users, user)
+
+	for _, i := range user.UserList {
+		subUsers := getAllSubUsers(i.ID.ID)
+		users = append(users, subUsers...)
+	}
+	return users
+}
+
+type UserInfo struct {
+	ID                 uint
+	Name               string
+	Telnumber          string
+	Status             bool
+	Roles              string
+	Permissions        string
+	IdentificationCode string
+	CountSelfUser      int
+	ManagerID          uint
+	CreateTime         string
+}
+
+func filterByName(userlist []UserInfo, username string) (ol []UserInfo) {
+	for _, item := range userlist {
+		if item.Name == username {
+			ol = append(ol, item)
 		}
+	}
+	return
+}
+
+func filterByCode(userlist []UserInfo, code string) (ol []UserInfo) {
+	for _, item := range userlist {
+		if item.IdentificationCode == code {
+			ol = append(ol, item)
+		}
+	}
+	return
+}
+
+func filterByTel(userlist []UserInfo, tel string) (ol []UserInfo) {
+	for _, item := range userlist {
+		if item.Telnumber == tel {
+			ol = append(ol, item)
+		}
+	}
+	return
+}
+
+func GetPageData(data interface{}, pageCount, pageIndex int) interface{} {
+	value := reflect.ValueOf(data)
+	if value.Kind() != reflect.Slice {
+		panic("data must be a slice")
+	}
+
+	// 确定总数据量
+	total := value.Len()
+
+	// 计算总页数
+	totalPages := total / pageCount
+	if total%pageCount != 0 {
+		totalPages++
+	}
+
+	// 确定要获取的页数
+	if pageIndex <= 0 {
+		pageIndex = 1
+	} else if pageIndex > totalPages {
+		pageIndex = totalPages
+	}
+
+	// 计算起始索引和结束索引
+	startIdx := (pageIndex - 1) * pageCount
+	endIdx := startIdx + pageCount
+	if endIdx > total {
+		endIdx = total
+	}
+
+	// 获取指定页的数据
+	result := reflect.MakeSlice(value.Type(), endIdx-startIdx, endIdx-startIdx)
+	for i := startIdx; i < endIdx; i++ {
+		result.Index(i - startIdx).Set(value.Index(i))
+	}
+
+	return result.Interface()
+}
+
+func (userServices userServices) GetUserInfoID(c *gin.Context) (err error, userlist []UserInfo, totalcount int) {
+	var user models.User
+	userID := c.DefaultQuery("id", "")
+	var userId int
+	if userId, err = strconv.Atoi(userID); err != nil {
+		err = errors.New("参数错误")
+		return
+	}
+	if err = global.App.DB.First(&user, userId).Error; err != nil {
+		err = errors.New("用户不存在")
+		return
 	} else {
-		if userintId, err := strconv.Atoi(userId); err != nil {
+		userName := c.DefaultQuery("name", "")
+		veriCode := c.DefaultQuery("veriCode", "")
+		telNum := c.DefaultQuery("telNum", "")
+		page := c.DefaultQuery("page", "")
+		page_size := c.DefaultQuery("page_size", "")
+		var pageN int
+		var page_sizeN int
+		if pageN, err = strconv.Atoi(page); err != nil {
 			err = errors.New("参数错误")
-		} else {
-			parameter := []int{userintId}
-			if err = global.App.DB.Preload("UserList").Preload("Roles").Preload("Permissions").Find(&users, parameter).Error; err != nil {
-				err = errors.New("查询失败")
-			}
+			return
 		}
+		if page_sizeN, err = strconv.Atoi(page_size); err != nil {
+			err = errors.New("参数错误")
+			return
+		}
+		users := getAllSubUsers(user.ID.ID)
+		for _, item := range users {
+			var count int
+			if item.UserList != nil {
+				count = len(item.UserList)
+			} else {
+				count = 0
+			}
+			var role string
+			if len(item.Roles) == 0 {
+				role = ""
+			} else {
+				role = item.Roles[0].Name
+			}
+			userlist = append(userlist, UserInfo{
+				ID:                 item.ID.ID,
+				Name:               item.Name,
+				Telnumber:          item.Telnumber,
+				Status:             item.Status,
+				Roles:              role,
+				IdentificationCode: item.IdentificationCode,
+				CountSelfUser:      count,
+				ManagerID:          item.ManagerID,
+				CreateTime:         item.CreatedAt.Format("2006-01-02 15:04:05"),
+			})
+		}
+		if userName != "" {
+			userlist = filterByName(userlist, userName)
+		}
+		if veriCode != "" {
+			userlist = filterByCode(userlist, veriCode)
+		}
+		if telNum != "" {
+			userlist = filterByTel(userlist, telNum)
+		}
+		totalcount = len(userlist)
+		result := GetPageData(userlist, page_sizeN, pageN)
+		userlist = result.([]UserInfo)
 	}
 	return
 }
@@ -97,6 +251,38 @@ func (userServices userServices) GetManagerUsers(c *gin.Context, userId string) 
 			parameter := []int{userintId}
 			if err = global.App.DB.Where("manager_id = ?", manager.ID.ID).Preload("UserList").Preload("Roles").Preload("Permissions").Find(&users, parameter).Error; err != nil {
 				err = errors.New("查询失败")
+			}
+		}
+	}
+	return
+}
+
+func (userServices userServices) GetRoles(userId string) (err error, roles []models.Role) {
+	var userid int
+	var user models.User
+	if userid, err = strconv.Atoi(userId); err != nil || userId == "" {
+		err = errors.New("参数错误")
+	} else {
+		if err = global.App.DB.Preload("Roles").First(&user, userid).Error; err != nil {
+			err = errors.New("用户不存在")
+		} else {
+			global.App.DB.Find(&roles)
+			isSuperM := false
+			for _, item := range user.Roles {
+				if item.Name == "superadmin" {
+					isSuperM = true
+					break
+				}
+			}
+			if !isSuperM {
+				var index int
+				for i, item := range roles {
+					if item.Name == "superadmin" {
+						index = i
+						break
+					}
+				}
+				roles = append(roles[:index], roles[index+1:]...)
 			}
 		}
 	}
@@ -171,7 +357,11 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 		// 推荐码
 		UniqueCode := utils.GenerateRandomString(6)
 		user.IdentificationCode = UniqueCode
-
+		var tempUser models.User
+		if err = global.App.DB.First(&tempUser, params.ManagerID).Error; err != nil {
+			err = errors.New("用户不存在")
+			return
+		}
 		if params.ManagerID == 0 {
 			user.ManagerID = 0
 			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 0")
@@ -188,6 +378,36 @@ func (userServices userServices) CreateManageuser(params *request.Resister) (err
 		err = global.App.DB.Model(&user).Association("Roles").Append(&role)
 	} else {
 		err = errors.New("用户已存在")
+	}
+	return
+}
+
+func (userServices userServices) EditUserStatus(param *request.EditUser) (err error) {
+	if param.Id == param.TargetId {
+		err = errors.New("不能操作自身")
+	} else {
+		var user models.User
+		var tuser models.User
+		if err = global.App.DB.First(&user, param.Id).Error; err != nil {
+			err = errors.New("参数错误")
+			return
+		}
+		if err = global.App.DB.First(&tuser, param.TargetId).Error; err != nil {
+			err = errors.New("用户不存在")
+			return
+		}
+		var status bool
+
+		if param.Status == 0 {
+			status = false
+		} else if param.Status == 1 {
+			status = true
+		} else {
+			err = errors.New("参数错误")
+			return
+		}
+		tuser.Status = status
+		err = global.App.DB.Save(&tuser).Error
 	}
 	return
 }

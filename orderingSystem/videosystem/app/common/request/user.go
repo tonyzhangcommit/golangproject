@@ -21,6 +21,19 @@ func (register Resister) Getmessage() ValidatorMessages {
 	}
 }
 
+type EditUser struct {
+	Id       int `form:"id" json:"id" binding:"required"`
+	TargetId int `form:"targetid" json:"targetid" binding:"required"`
+	Status   int `form:"status" json:"status"`
+}
+
+func (edituser EditUser) Getmessage() ValidatorMessages {
+	return ValidatorMessages{
+		"id:required":       "当前用户信息不能为空",
+		"targetid:required": "修改用户信息不能为空",
+	}
+}
+
 type ChangePwd struct {
 	Mobile   string `form:"mobile" json:"mobile" binding:"required,mobile"`
 	Password string `form:"password" json:"password" binding:"required"`

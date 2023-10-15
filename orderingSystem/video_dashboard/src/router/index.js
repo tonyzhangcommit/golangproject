@@ -38,8 +38,8 @@ export const constantRoutes = [
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/dashboardmanager/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      component: () => import('@/views/agentlist/index'),
+      meta: { title: '代理列表', icon: 'dashboard' }
     }]
   },
   {
@@ -47,6 +47,7 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
+
 
   {
     path: '/404',
@@ -58,39 +59,59 @@ export const constantRoutes = [
 // manager superadmin
 
 export const asyncRoutes = [
+  // {
+  //   path: '/agentlist',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'agentlist',
+  //       name: 'agentlist',
+  //       component: () => import('@/views/agentlist/index'),
+  //       meta: { title: '代理列表', icon: 'form', roles: ['superadmin'] }
+  //     }
+  //   ]
+  // },
+
   {
-    path: '/shopmanage',
+    path: '/videomanage',
     component: Layout,
-    redirect: '/shopmanage/shoporder',
-    name: 'shopmanage',
-    meta: { title: '店铺管理', icon: 'el-icon-s-help', roles: ['superadmin'] },
+    redirect: '/videomanage/videolist',
+    name: 'videomanage',
+    meta: { title: '产品管理', icon: 'el-icon-s-help', roles: ['superadmin'] },
     children: [
       {
-        path: 'shoporder',
-        name: 'shoporder',
-        component: () => import('@/views/table/index'),
-        meta: { title: '订单管理', icon: 'table', roles: ['superadmin'] }
+        path: 'videolist',
+        name: 'videolist',
+        component: () => import('@/views/videolist/index'),
+        meta: { title: '视频列表', icon: 'table', roles: ['superadmin'] }
       },
       {
-        path: 'menu',
-        name: 'menu',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '菜单管理', icon: 'tree', roles: ['superadmin'] }
+        path: 'category',
+        name: 'category',
+        component: () => import('@/views/category/index'),
+        meta: { title: '分类管理', icon: 'tree', roles: ['superadmin'] }
       },
       {
-        path: 'table',
-        name: 'table',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '桌号管理', icon: 'tree', roles: ['superadmin'] }
-      },
-      {
-        path: 'shopinfo',
-        name: 'shopinfo',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '店铺信息', icon: 'tree', roles: ['superadmin'] }
+        path: 'product',
+        name: 'product',
+        component: () => import('@/views/product/index'),
+        meta: { title: '产品列表', icon: 'tree', roles: ['superadmin'] }
       }
     ]
   },
+
+  // {
+  //   path: '/proxylist',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'proxylist',
+  //       name: 'proxylist',
+  //       component: () => import('@/views/agentlist/index'),
+  //       meta: { title: '代理列表', icon: 'form', roles: ['manager'] }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/realtimeorder',
@@ -99,37 +120,38 @@ export const asyncRoutes = [
       {
         path: 'realtimeorder',
         name: 'realtimeorder',
-        component: () => import('@/views/form/index'),
-        meta: { title: '实时订单', icon: 'form', roles: ['superadmin'] }
+        component: () => import('@/views/orders/index'),
+        meta: { title: '订单详情', icon: 'form', roles: ['superadmin','manager'] }
+      }
+    ]
+  },
+  {
+    path: '/readincome',
+    component: Layout,
+    children: [
+      {
+        path: 'readincome',
+        name: 'readincome',
+        component: () => import('@/views/incomes/index'),
+        meta: { title: '收益详情', icon: 'form', roles: ['superadmin'] }
       }
     ]
   },
 
-  {
-    path: '/shoperinfo',
-    component: Layout,
-    children: [
-      {
-        path: 'shoperinfo',
-        name: 'shoperinfo',
-        component: () => import('@/views/form/index'),
-        meta: { title: '个人信息', icon: 'form', roles: ['superadmin'] }
-      }
-    ]
-  },
+  // {
+  //   path: '/shoperinfo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'shoperinfo',
+  //       name: 'shoperinfo',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: '个人信息', icon: 'form', roles: ['superadmin'] }
+  //     }
+  //   ]
+  // },
 
-  {
-    path: '/proxylist',
-    component: Layout,
-    children: [
-      {
-        path: 'proxylist',
-        name: 'proxylist',
-        component: () => import('@/views/form/index'),
-        meta: { title: '代理列表', icon: 'form', roles: ['manager'] }
-      }
-    ]
-  },
+
 
   {
     path: '/incomeinfo',
@@ -138,24 +160,24 @@ export const asyncRoutes = [
       {
         path: 'incomeinfo',
         name: 'incomeinfo',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/incomes/index'),
         meta: { title: '收益详情', icon: 'form', roles: ['manager'] }
       }
     ]
   },
 
-  {
-    path: '/managerinfo',
-    component: Layout,
-    children: [
-      {
-        path: 'managerinfo',
-        name: 'managerinfo',
-        component: () => import('@/views/form/index'),
-        meta: { title: '个人资料', icon: 'form', roles: ['manager'] }
-      }
-    ]
-  },
+  // {
+  //   path: '/managerinfo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'managerinfo',
+  //       name: 'managerinfo',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: '个人资料', icon: 'form', roles: ['manager'] }
+  //     }
+  //   ]
+  // },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

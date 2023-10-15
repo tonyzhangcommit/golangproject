@@ -16,8 +16,9 @@ type Order struct {
 	UserID        uint
 	OrderCategory string  `json:"ordercategory" gorm:"not null;column:ordercategory;comment:订单类型"`
 	OrderStatus   string  `json:"orderstatus" gorm:"not null;column:orderstatus;comment:订单状态"`
-	Product       uint    `json:"product" gorm:"not null;column:product;comment:下单物品"`
+	Product       uint    `json:"product" gorm:"not null;column:product;comment:下单物品"` // 这里不设置外键，为了兼容两个类型产品，视频和会员
 	Price         float32 `json:"price" gorm:"not null;column:price;comment:支付金额"`
+	CreatedAt time.Time `json:"datetime" gorm:"not null;column:datetime;comment:支付日期"`
 	OrderInfo     OrderInfo
 }
 
@@ -28,11 +29,13 @@ type OrderInfo struct {
 	CreatedAt time.Time `json:"datetime" gorm:"not null;column:datetime;comment:支付日期"`
 }
 
-// 收益表 收益类型，代理收入/直接收入
+// 收益表 收益类型，代理收入/直属收入
 type InComeInfo struct {
 	ID
 	UserID     uint
-	InComeType string
-	InComeNum  float64
-	CreatedAt  time.Time `json:"createT" gorm:"not null;column:datetime;comment:支付日期"`
+	OrderID    uint
+	OrderType  string    `json:"ordertype" gorm:"not null;column:ordertype;comment:订单类型"`
+	InComeType string    `json:"incometype" gorm:"not null;column:incometype;comment:收益类型"`
+	InComeNum  float64   `json:"incomenumber" gorm:"not null;column:incomenumber;comment:收益金额"`
+	CreatedAt  time.Time `json:"createT" gorm:"not null;column:datetime;autoUpdateTime;comment:支付日期"`
 }

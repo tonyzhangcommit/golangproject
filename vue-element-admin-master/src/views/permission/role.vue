@@ -149,10 +149,10 @@ export default {
       return data
     },
     handleAddRole() {
-      this.role = Object.assign({}, defaultRole)
-      if (this.$refs.tree) {
-        this.$refs.tree.setCheckedNodes([])
-      }
+      // this.role = Object.assign({}, defaultRole)
+      // if (this.$refs.tree) {
+      //   this.$refs.tree.setCheckedNodes([])
+      // }
       this.dialogType = 'new'
       this.dialogVisible = true
     },
@@ -161,12 +161,12 @@ export default {
       this.dialogVisible = true
       this.checkStrictly = true
       this.role = deepClone(scope.row)
-      this.$nextTick(() => {
-        const routes = this.generateRoutes(this.role.routes)
-        this.$refs.tree.setCheckedNodes(this.generateArr(routes))
-        // set checked state of a node not affects its father and child nodes
-        this.checkStrictly = false
-      })
+      // this.$nextTick(() => {
+      //   const routes = this.generateRoutes(this.role.routes)
+      //   this.$refs.tree.setCheckedNodes(this.generateArr(routes))
+      //   // set checked state of a node not affects its father and child nodes
+      //   this.checkStrictly = false
+      // })
     },
     handleDelete({ $index, row }) {
       this.$confirm('Confirm to remove the role?', 'Warning', {

@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"orderingsystem/app/common/request"
 	"orderingsystem/app/models"
+
+	// "orderingsystem/app/services"
 	"orderingsystem/global"
 	"strconv"
-	"strings"
 )
 
 type videoServices struct {
@@ -15,80 +16,102 @@ type videoServices struct {
 
 var VideoServices = new(videoServices)
 
-// 创建分类
-func (videoServices videoServices) CreateCategory(params *request.CreateCategory) (category models.Category, err error) {
-	category.Name = params.Name
-	category.Intro = params.Intro
+func isValidCategory(firstL, secondL, thirdL string) bool {
+	if thirdL != "" {
+		return firstL != "" && secondL != ""
+	} else if secondL != "" {
+		return firstL != ""
+	} else {
+		return firstL != ""
+	}
+}
+
+// 创建分类,参数只有三种情况
+func (videoServices videoServices) CreateCategory(params *request.CreateCategory) (err error) {
+	// 首先判断参数正确性
+	if !isValidCategory(params.FirstLevel, params.SecondLevel, params.Thirdlevel) {
+		err = errors.New("参数错误")
+		return
+	}
+	var categoryF models.Category
+	var categoryS models.Category
+	var categoryT models.Category
+	// 首先创建一级分类
 	if params.FirstLevel != "" {
-		var ferr error
-		var firstl int
-		var categoryF models.Category
-		if firstl, ferr = strconv.Atoi(params.FirstLevel); ferr != nil {
-			err = errors.New("参数错误")
-			return
-		}
-		if err = global.App.DB.First(&categoryF, firstl).Error; err != nil {
-			err = errors.New("一级分类不存在")
-			return
-		}
-		if params.SecondLevel != "" {
-			var serr error
-			var secondl int
-			var categoryS models.Category
-			if secondl, serr = strconv.Atoi(params.SecondLevel); serr != nil {
-				err = errors.New("二级参数错误")
+		if err = global.App.DB.Where("name = ?", params.FirstLevel).First(&categoryF).Error; err != nil {
+			categoryF.CategoryID = 0
+			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 0")
+			categoryF.Name = params.FirstLevel
+			if err = global.App.DB.Create(&categoryF).Error; err != nil {
+				err = errors.New("创建一级分类失败")
 				return
 			}
-			if err = global.App.DB.First(&categoryS, secondl).Error; err != nil {
-				err = errors.New("二级分类不存在")
-				return
-			}
-			category.CategoryID = uint(secondl)
-			if err = global.App.DB.Create(&category).Error; err != nil {
-				err = errors.New("创建失败")
-			}
-			return
-		}
-		category.CategoryID = uint(firstl)
-		if err = global.App.DB.Create(&category).Error; err != nil {
-			err = errors.New("创建失败")
+			global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 1")
 		}
 	} else {
-		category.CategoryID = 0
-		global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 0")
-		if err = global.App.DB.Create(&category).Error; err != nil {
-			err = errors.New("创建失败")
+		err = errors.New("参数错误")
+		return
+	}
+	// 创建二级分类
+	if params.SecondLevel != "" {
+		if err = global.App.DB.Where("name = ?", params.SecondLevel).First(&categoryS).Error; err != nil {
+			categoryS.CategoryID = categoryF.ID.ID
+			categoryS.Name = params.SecondLevel
+			if err = global.App.DB.Create(&categoryS).Error; err != nil {
+				err = errors.New("创建二级分类失败")
+				return
+			}
+		}
+	}
+	// 创建三级分类
+	if params.Thirdlevel != "" {
+		if err = global.App.DB.Where("name = ?", params.Thirdlevel).First(&categoryS).Error; err != nil {
+			categoryT.CategoryID = categoryS.ID.ID
+			categoryT.Name = params.Thirdlevel
+			if err = global.App.DB.Create(&categoryT).Error; err != nil {
+				err = errors.New("创建三级分类失败")
+				return
+			}
+		} else {
+			err = errors.New("三级分类已存在")
 			return
 		}
-		global.App.DB.Exec("SET FOREIGN_KEY_CHECKS = 1")
 	}
-
 	return
+}
+
+func GetAllSubcategories(categoryID uint, categories *[]models.Category) {
+	global.App.DB.Where("category_id = ?", categoryID).Find(categories)
+	for i := range *categories {
+		GetAllSubcategories((*categories)[i].ID.ID, &(*categories)[i].Categorylist)
+	}
 }
 
 // 获取分类
-func (videoServices videoServices) GetCategory(categoryID string, categoryType string) (categories []models.Category, err error) {
-	var builder strings.Builder
-	builder.WriteString("%")
-	builder.WriteString(categoryType)
-	builder.WriteString("%")
-	condition := builder.String()
-	if categoryID == "0" {
-		if err = global.App.DB.Preload("Categorylist").Where("intro LIKE ?", condition).Find(&categories).Error; err != nil {
-			err = errors.New("查询失败")
-		}
+func (videoServices videoServices) GetCategory(categoryID string) (categories []models.Category, err error) {
+
+	if categoryId, err := strconv.Atoi(categoryID); err != nil {
+		err = errors.New("参数错误")
 	} else {
-		if categoryId, err := strconv.Atoi(categoryID); err != nil {
-			err = errors.New("参数错误")
+		if categoryId == 0 {
+			// 获取一级分类
+			if err = global.App.DB.Preload("Categorylist").Where("category_id = ?", categoryId).Find(&categories).Error; err != nil {
+				err = errors.New("查询分类详情失败")
+			}
+			for i := range categories {
+				GetAllSubcategories(categories[i].ID.ID, &categories[i].Categorylist)
+			}
 		} else {
-			if err = global.App.DB.Preload("Categorylist").Where("intro LIKE ?", condition).Find(&categories, categoryId).Error; err != nil {
+			if err = global.App.DB.Preload("Categorylist").Find(&categories, categoryId).Error; err != nil {
 				err = errors.New("查询分类详情失败")
 			}
 		}
+
 	}
 	return
 }
-func (videoServices videoServices) GetVideo(videoname string, category string) (videos []models.Video, err error) {
+func (videoServices videoServices) GetVideo(videoname string, category string, pageN, page_sizeN int) (videos []models.Video, count int, err error) {
+	fmt.Println(pageN, page_sizeN)
 
 	if videoname != "" {
 		global.App.DB.Where("name like ?", "%"+videoname+"%").Preload("Videolist").Find(&videos)
@@ -107,6 +130,9 @@ func (videoServices videoServices) GetVideo(videoname string, category string) (
 	} else {
 		global.App.DB.Preload("Videolist").Preload("Categories").Find(&videos)
 	}
+	count = len(videos)
+	result := GetPageData(videos, page_sizeN, pageN)
+	videos = result.([]models.Video)
 	return
 }
 
@@ -120,18 +146,14 @@ func (videoServices videoServices) UploadVideo(params *request.UploadVideo) (vid
 	}
 	for _, item := range params.Categories {
 		var dberr error
-		if itemInt, err := strconv.Atoi(item); err != nil {
-			err = errors.New("分类信息有误")
-			var category models.Category
-			if dberr = global.App.DB.First(&category, itemInt).Error; dberr != nil {
-				dberr = errors.New("分类不存在")
-			}
+		var category models.Category
+		if dberr = global.App.DB.First(&category, item).Error; dberr != nil {
+			dberr = errors.New("分类不存在")
 		}
 		if err != nil || dberr != nil {
 			return
 		}
 	}
-	fmt.Println(video)
 	if err = global.App.DB.Where("name = ?", params.Name).First(&video).Error; err == nil {
 		err = errors.New("视频已存在")
 		return
@@ -141,9 +163,8 @@ func (videoServices videoServices) UploadVideo(params *request.UploadVideo) (vid
 	}
 	// 添加关联
 	for _, item := range params.Categories {
-		itemInt, _ := strconv.Atoi(item)
 		var category models.Category
-		global.App.DB.First(&category, itemInt)
+		global.App.DB.First(&category, item)
 		global.App.DB.Model(&video).Association("Categories").Append(&category)
 	}
 	return
@@ -171,33 +192,51 @@ func (videoServices videoServices) UploadVideoItem(params *request.CreateVideoIt
 // 删除影视/影视中的某一集
 func (videoServices videoServices) DeleteVideo(params *request.Deletevideo) (err error) {
 	var video models.Video
-	if params.VideoID != 0 {
-		// 删除影视
-		if err = global.App.DB.First(&video, params.VideoID).Error; err != nil {
+	var videoitem models.VideoInfo
+	if params.VideoItemID != 0 {
+		if err = global.App.DB.First(&videoitem, params.VideoItemID).Error; err != nil {
+			err = errors.New("剧集不存在!")
+			return
+		}
+		global.App.DB.Delete(&videoitem)
+		// 删除影视，通过判断当前影视下是否还包含剧集，如果没有则删除影视
+
+		if err = global.App.DB.Preload("Videolist").First(&video, params.VideoID).Error; err != nil {
 			err = errors.New("视频不存在!")
 			return
 		}
-		// 清空关联
-		global.App.DB.Model(&video).Association("Categories").Clear()
-		global.App.DB.Where("video_id = ?", params.VideoID).Delete(&models.VideoInfo{})
-		global.App.DB.Where(&video).Delete(&video)
-	} else if len(params.VideoItemIDList) != 0 {
-		for _, videoItemId := range params.VideoItemIDList {
-			var videoitem models.VideoInfo
-
-			if err = global.App.DB.First(&videoitem, videoItemId).Error; err != nil {
-				err = errors.New("剧集不存在!")
-			}
-			videoID := videoitem.VideoID
-			if err = global.App.DB.First(&video, videoID).Error; err != nil {
-				err = errors.New("该剧集对应视频不存在!")
-			}
-			// 删除剧集
-			global.App.DB.Delete(&videoitem)
+		if len(video.Videolist) == 0 {
+			global.App.DB.Where(&video).Delete(&video)
+			global.App.DB.Model(&video).Association("Categories").Clear()
 		}
+		// global.App.DB.Model(&video).Association("Categories").Clear()
+		// global.App.DB.Where("video_id = ?", params.VideoID).Delete(&models.VideoInfo{})
+		// global.App.DB.Where(&video).Delete(&video)
+		// } else if len(params.VideoItemID) != 0 {
+		// 	for _, videoItemId := range params.VideoItemID  {
 
+		// 		if err = global.App.DB.First(&videoitem, videoItemId).Error; err != nil {
+		// 			err = errors.New("剧集不存在!")
+		// 		}
+		// 		videoID := videoitem.VideoID
+		// 		if err = global.App.DB.First(&video, videoID).Error; err != nil {
+		// 			err = errors.New("该剧集对应视频不存在!")
+		// 		}
+		// 		// 删除剧集
+		// 		// global.App.DB.Delete(&videoitem)
+		// 	}
+
+		// } else {
+		// 	err = errors.New("请填写正确参数!")
 	} else {
-		err = errors.New("请填写正确参数!")
+		if err = global.App.DB.Preload("Videolist").First(&video, params.VideoID).Error; err != nil {
+			err = errors.New("视频不存在!")
+			return
+		}
+		if len(video.Videolist) == 0 {
+			global.App.DB.Where(&video).Delete(&video)
+			global.App.DB.Model(&video).Association("Categories").Clear()
+		}
 	}
 	return
 }

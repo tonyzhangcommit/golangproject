@@ -4,8 +4,7 @@ package request
 type CreateCategory struct {
 	FirstLevel  string `form:"firstlevel" json:"firstlevel"`
 	SecondLevel string `form:"secondlevel" json:"secondlevel"`
-	Name        string `form:"name" json:"name" binding:"required"`
-	Intro       string `form:"intro" json:"intro"`
+	Thirdlevel  string `form:"thirdlevel" json:"thirdlevel"`
 }
 
 func (category CreateCategory) Getmessage() ValidatorMessages {
@@ -15,7 +14,7 @@ func (category CreateCategory) Getmessage() ValidatorMessages {
 }
 
 type DeleteCategory struct {
-	ID string `form:"id" json:"id" binding:"required"`
+	ID int `form:"id" json:"id" binding:"required"`
 }
 
 func (category DeleteCategory) Getmessage() ValidatorMessages {
@@ -40,10 +39,10 @@ func (createvideitem CreateVideoItem) Getmessage() ValidatorMessages {
 }
 
 type UploadVideo struct {
-	Name       string   `form:"name" json:"name" binding:"required"`
-	Cover      string   `form:"cover" json:"cover" binding:"required"`
-	Intro      string   `form:"intro" json:"intro"`
-	Categories []string `form:"categories" json:"categories" binding:"required"`
+	Name       string `form:"name" json:"name" binding:"required"`
+	Cover      string `form:"cover" json:"cover" binding:"required"`
+	Intro      string `form:"intro" json:"intro"`
+	Categories []int  `form:"categories" json:"categories" binding:"required"`
 }
 
 func (createvideo UploadVideo) Getmessage() ValidatorMessages {
@@ -55,7 +54,6 @@ func (createvideo UploadVideo) Getmessage() ValidatorMessages {
 }
 
 type Deletevideo struct {
-	VideoID         uint   `form:"videoid" json:"videoid"`
-	VideoItemIDList []uint `form:"videoitemid" json:"videoitemid"`
+	VideoID     uint `form:"videoid" json:"videoid"`
+	VideoItemID uint `form:"videoitemid" json:"videoitemid"`
 }
-

@@ -5,6 +5,7 @@ import router, { resetRouter } from '@/router'
 const state = {
   token: '',
   name: '',
+  id: '',
   avatar: '',
   introduction: '',
   roles: []
@@ -19,6 +20,9 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_ID: (state, id) => {
+    state.id = id
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
@@ -52,13 +56,14 @@ const actions = {
       }
       getInfo({ jwt: jwt }).then(response => {
         var name = response.data.Name
+        var id = response.data.Id
         // const { data } = response
         // if (!data) {
         //   reject('Verification failed, please Login again.')
         // }
         commit('SET_NAME', name)
+        commit('SET_ID', id)
         // commit('SET_AVATAR', avatar)
-        // commit('SET_INTRODUCTION', introduction)
         resolve(response)
       }).catch(error => {
         console.log(error)
@@ -71,12 +76,15 @@ const actions = {
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
+        removeToken()
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         resetRouter()
         dispatch('tagsView/delAllViews', null, { root: true })
         resolve()
       }).catch(error => {
+        removeToken()
+        resetRouter()
         reject(error)
       })
     })
